@@ -3,4 +3,22 @@
     <string name="input_example">Example: Barcelona, Madrid…</string>
     <string name="filters">Filters</string>
     <string name="search">Search</string>
+    <string name="favourites">Favourites</string>
+    <string name="dwelling">Dwelling</string>
+    <string name="price">Price</string>
+    <string name="characteristics">Characteristics</string>
+    <string name="new_build">New Build</string>
+    <string name="terrace">Terrace</string>
+    <string name="elevator">Elevator</string>
+    <string name="balcony">Balcony</string>
+    <string name="pool">Pool</string>
+    <string name="garden">Garden</string>
+    <string name="heating">Heating</string>
+    <string name="internet">Internet</string>
+    <string-array name="dwelling_types">
+        <item>Flat</item>
+        <item>Office</item>
+        <item>Terrain</item>
+        <item>Industrial Ship</item>
+    </string-array>
 </resources>
