@@ -38,4 +38,6 @@
     <string name="title_list">List</string>
     <string name="title_map">Map</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="google_map_api_key">AIzaSyAbF82Yfz7IPBt-or_p821Ack9nhX6funU</string>
 </resources>

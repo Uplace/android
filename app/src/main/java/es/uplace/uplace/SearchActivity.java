@@ -1,6 +1,5 @@
 package es.uplace.uplace;
 
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,12 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import es.uplace.uplace.fragments.ListSearchFragment;
+import es.uplace.uplace.fragments.MapSearchFragment;
 
 public class SearchActivity extends AppCompatActivity {
 
     BottomNavigationView navigation;
     FragmentManager fragmentManager;
-    Fragment listFragment;
+    Fragment listFragment, mapFragment;
+
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,16 +30,23 @@ public class SearchActivity extends AppCompatActivity {
 
         // define your fragments here
         listFragment = new ListSearchFragment();
+        mapFragment = new MapSearchFragment();
+
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.searchFrame, listFragment).commit();
 
         // handle navigation selection
         navigation.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        fragmentTransaction = fragmentManager.beginTransaction();
                         switch (item.getItemId()) {
                             case R.id.nav_list:
-                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.searchFragment, listFragment).commit();
+                                fragmentTransaction.replace(R.id.searchFrame, listFragment).commit();
+                                return true;
+                            case R.id.nav_map:
+                                fragmentTransaction.replace(R.id.searchFrame, mapFragment).commit();
                                 return true;
                         }
                         return true;
