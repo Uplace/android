@@ -15,10 +15,23 @@
     <string name="garden">Garden</string>
     <string name="heating">Heating</string>
     <string name="internet">Internet</string>
+    <string name="property_image">Property Image</string>
+    <string name="property_name">Property Name</string>
+    <string name="location">Location</string>
+    <string name="favourites_image">Favourites Image</string>
+    <string name="property_price">Price</string>
+    <string name="property_type">Type</string>
+    <string name="year_of_construction">Year of construction</string>
+    <string name="square_meters">Square meters</string>
+    <string name="number_of_rooms">Number of rooms</string>
     <string-array name="dwelling_types">
         <item>Flat</item>
         <item>Office</item>
         <item>Terrain</item>
         <item>Industrial Ship</item>
     </string-array>
+
+    <string name="str_number">%d</string>
+    <string name="str_text">%s</string>
+    <string name="str_price">%s€</string>
 </resources>
