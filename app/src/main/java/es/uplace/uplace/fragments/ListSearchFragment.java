@@ -1,27 +1,28 @@
 package es.uplace.uplace.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
 import es.uplace.uplace.R;
+import es.uplace.uplace.adapters.ListSearchAdapter;
 
 public class ListSearchFragment extends Fragment {
 
     //    Test List
     ArrayList<String> strings = new ArrayList<>();
 
-    ListView listProperty;
-    ArrayAdapter<String> adapter;
+    RecyclerView recyclerProperty;
+    //    ArrayAdapter<String> adapter;
+    ListSearchAdapter listSearchAdapter = new ListSearchAdapter();
 
 
     @Override
@@ -42,8 +43,10 @@ public class ListSearchFragment extends Fragment {
         strings.add("Oficina");
         strings.add("Terreno");
 
-        listProperty = getView().findViewById(R.id.listProperty);
-        adapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, strings);
-        listProperty.setAdapter(adapter);
+        recyclerProperty = getView().findViewById(R.id.recyclerProperty);
+//        adapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_list_item_1, strings);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerProperty.setLayoutManager(layoutManager);
+        recyclerProperty.setAdapter(listSearchAdapter);
     }
 }
