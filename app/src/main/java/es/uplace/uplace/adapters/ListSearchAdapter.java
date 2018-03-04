@@ -41,6 +41,13 @@ public class ListSearchAdapter extends RecyclerView.Adapter<ListSearchAdapter.Vi
             txtChar1 = view.findViewById(R.id.txtChar1);
             txtChar2 = view.findViewById(R.id.txtChar2);
             txtChar3 = view.findViewById(R.id.txtChar3);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) listener.itemClicked(view);
+                }
+            });
         }
     }
 
@@ -64,5 +71,15 @@ public class ListSearchAdapter extends RecyclerView.Adapter<ListSearchAdapter.Vi
     @Override
     public int getItemCount() {
         return 4;
+    }
+
+    public interface OnItemClickListener {
+        void itemClicked(View view);
+    }
+
+    private OnItemClickListener listener;
+
+    public void setOnClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }
