@@ -61,8 +61,8 @@ public class ListSearchAdapter extends RecyclerView.Adapter<ListSearchAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 //        Property property = propertyList.getProperties()[position];
-        holder.txtPropertyName.setText("Test Nombre");
-        holder.txtLocation.setText("Test Location");
+        holder.txtPropertyName.setText("Test Nombre Largo, 1, 2, 3");
+        holder.txtLocation.setText("Test Location: c/Lorem ipsum 123, Prpl. 4 08001, Barcelona, Spain");
         holder.txtPrice.setText("9999€");
         holder.txtType.setText("Test Type");
         holder.txtYearOfConst.setText("2018");
@@ -70,7 +70,7 @@ public class ListSearchAdapter extends RecyclerView.Adapter<ListSearchAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 2;
     }
 
     public interface OnItemClickListener {
