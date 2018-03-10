@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import es.uplace.uplace.R;
 
-public class PropertyCharAdapter extends RecyclerView.Adapter<PropertyCharAdapter.ViewHolder> {
+public class PropertyExtraAdapter extends RecyclerView.Adapter<PropertyExtraAdapter.ViewHolder> {
 
     private Context context;
 
-    public PropertyCharAdapter(Context context) {
+    public PropertyExtraAdapter(Context context) {
         this.context = context;
     }
 
@@ -31,19 +31,19 @@ public class PropertyCharAdapter extends RecyclerView.Adapter<PropertyCharAdapte
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PropertyExtraAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.property_x, parent, false);
-        return new ViewHolder(view);
+        return new PropertyExtraAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.txtX.setText("Characteristic");
+    public void onBindViewHolder(PropertyExtraAdapter.ViewHolder holder, int position) {
+        holder.txtX.setText("Extra");
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 7;
     }
 }
