@@ -1,5 +1,6 @@
 package es.uplace.uplace.adapters;
 
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,14 +8,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import es.uplace.uplace.R;
+import es.uplace.uplace.domain.Property;
 
 public class ListSearchAdapter extends RecyclerView.Adapter<ListSearchAdapter.ViewHolder> {
 
-//    private PropertyList propertyList;
+    List<Property> properties;
 
-    public ListSearchAdapter(/*PropertyList propertyList*/) {
-//        this.propertyList = propertyList;
+    Resources resources;
+
+    public ListSearchAdapter(List<Property> properties) {
+        this.properties = properties;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -53,22 +59,23 @@ public class ListSearchAdapter extends RecyclerView.Adapter<ListSearchAdapter.Vi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_list_property, parent, false);
+        resources = parent.getResources();
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//        Property property = propertyList.getProperties()[position];
-        holder.txtPropertyName.setText("Test Nombre Largo, 1, 2, 3");
-        holder.txtLocation.setText("Test Location: c/Lorem ipsum 123, Prpl. 4 08001, Barcelona, Spain");
-        holder.txtPrice.setText("9999€");
-        holder.txtType.setText("Test Type");
-        holder.txtYearOfConst.setText("2018");
+        Property property = properties.get(position);
+        holder.txtPropertyName.setText(property.getTitle());
+        holder.txtLocation.setText(property.getDescription());
+        holder.txtPrice.setText(resources.getString(R.string.str_price, property.getPrice()));
+        holder.txtType.setText(property.getPropertyType());
+        holder.txtYearOfConst.setText(property.getYearConstruction());
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return properties.size() - 1;
     }
 
     public interface OnItemClickListener {
