@@ -11,8 +11,8 @@ import es.uplace.uplace.adapters.PropertyExtraAdapter
 
 class PropertyActivity : AppCompatActivity() {
 
-    internal var propertyCharAdapter = PropertyCharAdapter(this)
-    internal var propertyExtraAdapter = PropertyExtraAdapter(this)
+    var propertyCharAdapter = PropertyCharAdapter(this)
+    var propertyExtraAdapter = PropertyExtraAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

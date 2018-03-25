@@ -14,26 +14,34 @@ import android.view.ViewGroup
 import es.uplace.uplace.PropertyActivity
 import es.uplace.uplace.R
 import es.uplace.uplace.adapters.ListSearchAdapter
+import es.uplace.uplace.domain.Property
 
-class ListSearchFragment : Fragment(), ListSearchAdapter.OnItemClickListener {
-
-    internal var listSearchAdapter = ListSearchAdapter()
+class ListSearchFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val v = inflater!!.inflate(R.layout.fragment_list, container, false)
 
-        val recyclerProperty = v.findViewById(R.id.recyclerProperty) as RecyclerView
-        val layoutManager = LinearLayoutManager(context)
-        recyclerProperty.layoutManager = layoutManager
-        recyclerProperty.adapter = listSearchAdapter
-        listSearchAdapter.setOnClickListener(this)
+        var properties = ArrayList<Property>()
+        properties.add(Property(title = "Property 1"))
+
+        val adapter = ListSearchAdapter()
+        adapter.properties = properties
+        val recyclerProperty = v.findViewById<RecyclerView>(R.id.recyclerProperty)
+        recyclerProperty.adapter = adapter
+        recyclerProperty.layoutManager = LinearLayoutManager(context)
+
+//        val recyclerProperty = v.findViewById(R.id.recyclerProperty) as RecyclerView
+//        val layoutManager = LinearLayoutManager(context)
+//        recyclerProperty.layoutManager = layoutManager
+//        recyclerProperty.adapter = listSearchAdapter
+//        listSearchAdapter.setOnClickListener(this)
 
         return v
     }
 
-    override fun itemClicked(view: View) {
-        val intent = Intent(this.activity, PropertyActivity::class.java)
-        startActivity(intent)
-    }
-}// Required empty public constructor
+//    override fun itemClicked(view: View) {
+//        val intent = Intent(this.activity, PropertyActivity::class.java)
+//        startActivity(intent)
+//    }
+}

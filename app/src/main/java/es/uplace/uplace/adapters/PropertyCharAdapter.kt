@@ -14,7 +14,7 @@ import es.uplace.uplace.R
 
 class PropertyCharAdapter(private val context: Context) : RecyclerView.Adapter<PropertyCharAdapter.ViewHolder>() {
 
-    internal inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         var imgX: ImageView
         var txtX: TextView

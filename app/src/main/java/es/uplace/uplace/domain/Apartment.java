@@ -4,7 +4,7 @@ import es.uplace.uplace.domain.enumeration.ApartmentType;
 import es.uplace.uplace.domain.enumeration.EnergyCertificate;
 import es.uplace.uplace.domain.enumeration.Select;
 
-public class Apartment extends Property {
+public class Apartment {
 
     private Integer numberBedrooms;
     private Integer numberBathrooms;
