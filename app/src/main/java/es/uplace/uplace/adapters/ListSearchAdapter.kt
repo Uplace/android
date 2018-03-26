@@ -1,7 +1,5 @@
 package es.uplace.uplace.adapters
 
-import kotlinx.android.synthetic.main.card_list_property.*
-
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +9,7 @@ import android.widget.TextView
 import es.uplace.uplace.R
 import es.uplace.uplace.domain.Property
 
-class ListSearchAdapter : RecyclerView.Adapter<ListSearchAdapter.ViewHolder>() {
-
-    var properties: ArrayList<Property> = ArrayList<Property>()
+class ListSearchAdapter(var properties: List<Property>?) : RecyclerView.Adapter<ListSearchAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -31,12 +27,8 @@ class ListSearchAdapter : RecyclerView.Adapter<ListSearchAdapter.ViewHolder>() {
         private val txtChar2 = view.findViewById<TextView>(R.id.txtChar2)
         private val txtChar3 = view.findViewById<TextView>(R.id.txtChar3)
 
-        private var currentProperty: Property? = null
-
         fun bind(property: Property) {
-            currentProperty = property
-
-            txtPropertyName.text = "Hola"
+            txtPropertyName.text = property.title
         }
 
     }
@@ -46,10 +38,10 @@ class ListSearchAdapter : RecyclerView.Adapter<ListSearchAdapter.ViewHolder>() {
         return ViewHolder(cardProperty)
     }
 
-    override fun getItemCount() = 4
+    override fun getItemCount() = properties!!.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val property = properties[position]
+        val property = properties!![position]
         holder.bind(property)
     }
 

@@ -1,8 +1,5 @@
 package es.uplace.uplace.fragments
 
-import kotlinx.android.synthetic.main.fragment_list.*
-
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -10,11 +7,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
-import es.uplace.uplace.PropertyActivity
 import es.uplace.uplace.R
 import es.uplace.uplace.adapters.ListSearchAdapter
-import es.uplace.uplace.domain.Property
+import es.uplace.uplace.retrofit.PropertyService
+import es.uplace.uplace.retrofit.Service
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ListSearchFragment : Fragment() {
 
@@ -22,14 +22,28 @@ class ListSearchFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val v = inflater!!.inflate(R.layout.fragment_list, container, false)
 
-        var properties = ArrayList<Property>()
-        properties.add(Property(title = "Property 1"))
+        val retrofit = Retrofit.Builder()
+                .baseUrl(Service.API_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
 
-        val adapter = ListSearchAdapter()
-        adapter.properties = properties
-        val recyclerProperty = v.findViewById<RecyclerView>(R.id.recyclerProperty)
-        recyclerProperty.adapter = adapter
-        recyclerProperty.layoutManager = LinearLayoutManager(context)
+        val propertyService = retrofit.create(PropertyService::class.java)
+
+        val call = propertyService.findAllProperties()
+
+        val response = call.execute()
+
+        if (response.isSuccessful) {
+            val properties = response.body()
+
+            val adapter = ListSearchAdapter(properties)
+            adapter.properties = properties
+            val recyclerProperty = v.findViewById<RecyclerView>(R.id.recyclerProperty)
+            recyclerProperty.adapter = adapter
+            recyclerProperty.layoutManager = LinearLayoutManager(context)
+        } else {
+            Toast.makeText(context, "Error al recuperar propiedades", Toast.LENGTH_SHORT).show()
+        }
 
 //        val recyclerProperty = v.findViewById(R.id.recyclerProperty) as RecyclerView
 //        val layoutManager = LinearLayoutManager(context)
