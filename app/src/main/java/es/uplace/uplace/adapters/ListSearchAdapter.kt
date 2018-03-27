@@ -41,7 +41,7 @@ class ListSearchAdapter(var properties: List<Property>?) : RecyclerView.Adapter<
     override fun getItemCount() = properties!!.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val property = properties!![position]
+        val property = properties!!.get(position)
         holder.bind(property)
     }
 

@@ -11,6 +11,9 @@ import android.widget.Toast
 
 import es.uplace.uplace.R
 import es.uplace.uplace.adapters.ListSearchAdapter
+import es.uplace.uplace.domain.Location
+import es.uplace.uplace.domain.Property
+import es.uplace.uplace.domain.enumeration.TransactionType
 import es.uplace.uplace.retrofit.PropertyService
 import es.uplace.uplace.retrofit.Service
 import retrofit2.Retrofit
@@ -22,28 +25,38 @@ class ListSearchFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val v = inflater!!.inflate(R.layout.fragment_list, container, false)
 
-        val retrofit = Retrofit.Builder()
-                .baseUrl(Service.API_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+//        val retrofit = Retrofit.Builder()
+//                .baseUrl(Service.API_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build()
+//
+//        val propertyService = retrofit.create(PropertyService::class.java)
+//
+//        val call = propertyService.findAllProperties()
+//
+//        val response = call.execute()
+//
+//        if (response.isSuccessful) {
+//            val properties = response.body()
 
-        val propertyService = retrofit.create(PropertyService::class.java)
+        var properties: List<Property>
 
-        val call = propertyService.findAllProperties()
+        properties = mutableListOf(
+                Property("House1", "987654", "Apartment", TransactionType.BUY, 100, Location(1, 1.0, 1.0, "08001", "Barcelona", "Calle House1")),
+                Property("House2", "987654", "Apartment", TransactionType.BUY, 100, Location(1, 1.0, 1.0, "08001", "Barcelona", "Calle House1")),
+                Property("House3", "987654", "Apartment", TransactionType.BUY, 100, Location(1, 1.0, 1.0, "08001", "Barcelona", "Calle House1")),
+                Property("House4", "987654", "Apartment", TransactionType.BUY, 100, Location(1, 1.0, 1.0, "08001", "Barcelona", "Calle House1")))
+                .toList()
 
-        val response = call.execute()
-
-        if (response.isSuccessful) {
-            val properties = response.body()
-
+//
             val adapter = ListSearchAdapter(properties)
             adapter.properties = properties
             val recyclerProperty = v.findViewById<RecyclerView>(R.id.recyclerProperty)
             recyclerProperty.adapter = adapter
             recyclerProperty.layoutManager = LinearLayoutManager(context)
-        } else {
-            Toast.makeText(context, "Error al recuperar propiedades", Toast.LENGTH_SHORT).show()
-        }
+//        } else {
+//            Toast.makeText(context, "Error al recuperar propiedades", Toast.LENGTH_SHORT).show()
+//        }
 
 //        val recyclerProperty = v.findViewById(R.id.recyclerProperty) as RecyclerView
 //        val layoutManager = LinearLayoutManager(context)
