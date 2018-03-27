@@ -29,6 +29,8 @@ class ListSearchAdapter(var properties: List<Property>?) : RecyclerView.Adapter<
 
         fun bind(property: Property) {
             txtPropertyName.text = property.title
+            txtLocation.text = property.location.fullAddress
+            txtType.text = property.propertyType
         }
 
     }
