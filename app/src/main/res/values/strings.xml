@@ -33,7 +33,7 @@
 
     <string name="str_number">%d</string>
     <string name="str_text">%s</string>
-    <string name="str_price">%s€</string>
+    <string name="str_price">%d€</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="title_list">List</string>
     <string name="title_map">Map</string>
