@@ -1,8 +1,8 @@
-package es.uplace.uplace.domain.enumeration;
+package es.uplace.uplace.domain.enumeration
 
 /**
  * The BuildingType enumeration.
  */
-public enum BuildingType {
+enum class BuildingType {
     RESIDENTIAL, HOTEL, INDUSTRIAL
 }

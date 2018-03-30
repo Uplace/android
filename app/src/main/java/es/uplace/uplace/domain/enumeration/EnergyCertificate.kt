@@ -1,8 +1,8 @@
-package es.uplace.uplace.domain.enumeration;
+package es.uplace.uplace.domain.enumeration
 
 /**
  * The EnergyCertificate enumeration.
  */
-public enum EnergyCertificate {
+enum class EnergyCertificate {
     A, B, C, D, E, F, G, UNDEFINED
 }

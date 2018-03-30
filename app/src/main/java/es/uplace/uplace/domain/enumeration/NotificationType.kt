@@ -1,8 +1,8 @@
-package es.uplace.uplace.domain.enumeration;
+package es.uplace.uplace.domain.enumeration
 
 /**
  * The NotificationType enumeration.
  */
-public enum NotificationType {
+enum class NotificationType {
     NOTIFICATION, REQUEST, ALERT
 }
