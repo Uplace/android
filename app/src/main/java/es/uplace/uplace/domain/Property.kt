@@ -5,10 +5,16 @@ import es.uplace.uplace.domain.enumeration.TransactionType
 open class Property(
         val title: String,
         val reference: String,
+        val description: String,
         val propertyType: String,
-        val transaction: TransactionType,
+        val transaction: String,
         val surface: Int,
-        val location: Location
+        val location: Location,
+        val visible: Boolean,
+        val yearConstruction: Int,
+        val priceTransfer: Double,
+        val priceSell: Double,
+        val priceRent: Double
 )
 
 //        Appartment Properties
