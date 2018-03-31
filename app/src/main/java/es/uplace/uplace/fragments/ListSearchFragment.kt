@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 
 import es.uplace.uplace.R
@@ -17,6 +18,7 @@ import es.uplace.uplace.domain.Property
 import es.uplace.uplace.domain.enumeration.TransactionType
 import es.uplace.uplace.retrofit.PropertyService
 import es.uplace.uplace.retrofit.Service
+import kotlinx.android.synthetic.main.fragment_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,29 +31,13 @@ class ListSearchFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val v = inflater!!.inflate(R.layout.fragment_list, container, false)
 
-//        val retrofit = Retrofit.Builder()
-//                .baseUrl(Service.API_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build()
-//
-//        val propertyService = retrofit.create(PropertyService::class.java)
-//
-//        val call = propertyService.findAllProperties()
-//
-//        val properties = call.execute().body()
-
         findAllProperties(v)
-
-//        val adapter = ListSearchAdapter(properties)
-//        adapter.properties = properties
-//        val recyclerProperty = v.findViewById<RecyclerView>(R.id.recyclerProperty)
-//        recyclerProperty.adapter = adapter
-//        recyclerProperty.layoutManager = LinearLayoutManager(context)
 
         return v
     }
 
     fun findAllProperties(view: View) {
+        val pgBar = view.findViewById<ProgressBar>(R.id.pgBar)
         val propertyService = PropertyService.create()
         val call = propertyService.findAllProperties()
         Log.d("ncs", "Call: " + call.toString())
@@ -59,6 +45,7 @@ class ListSearchFragment : Fragment() {
         call.enqueue(object : Callback<List<Property>> {
             override fun onFailure(call: Call<List<Property>>?, t: Throwable?) {
                 Toast.makeText(context, "Error en Callback", Toast.LENGTH_LONG).show()
+                pgBar.visibility = ProgressBar.GONE
             }
 
             override fun onResponse(call: Call<List<Property>>?, response: Response<List<Property>>?) {
@@ -74,13 +61,9 @@ class ListSearchFragment : Fragment() {
                 } else {
                     Toast.makeText(context, "Response is null", Toast.LENGTH_LONG).show()
                 }
+                pgBar.visibility = ProgressBar.GONE
             }
 
         })
     }
-
-//    override fun itemClicked(view: View) {
-//        val intent = Intent(this.activity, PropertyActivity::class.java)
-//        startActivity(intent)
-//    }
 }
