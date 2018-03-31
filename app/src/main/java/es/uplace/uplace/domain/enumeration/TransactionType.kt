@@ -1,8 +1,8 @@
-package es.uplace.uplace.domain.enumeration;
+package es.uplace.uplace.domain.enumeration
 
 /**
  * The TransactionType enumeration.
  */
-public enum TransactionType {
+enum class TransactionType {
     RENT, BUY, TRANSFER, RENT_BUY
 }

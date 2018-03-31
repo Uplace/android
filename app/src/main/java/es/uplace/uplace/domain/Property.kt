@@ -1,6 +1,5 @@
 package es.uplace.uplace.domain
 
-import es.uplace.uplace.domain.enumeration.Select
 import es.uplace.uplace.domain.enumeration.TransactionType
 
 open class Property(

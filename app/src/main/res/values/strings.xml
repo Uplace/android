@@ -4,7 +4,7 @@
     <string name="filters">Filters</string>
     <string name="search">Search</string>
     <string name="favourites">Favourites</string>
-    <string name="dwelling">Dwelling</string>
+    <string name="dwelling">Dwelling type</string>
     <string name="price">Price</string>
     <string name="characteristics">Characteristics</string>
     <string name="new_build">New Build</string>
@@ -13,7 +13,7 @@
     <string name="balcony">Balcony</string>
     <string name="pool">Pool</string>
     <string name="garden">Garden</string>
-    <string name="heating">Heating</string>
+    <string name="heat">Heat</string>
     <string name="internet">Internet</string>
     <string name="property_image">Property Image</string>
     <string name="property_name">Property Name</string>
@@ -25,10 +25,15 @@
     <string name="square_meters">Square meters</string>
     <string name="number_of_rooms">Number of rooms</string>
     <string-array name="dwelling_types">
-        <item>Flat</item>
+        <item>Apartment</item>
+        <item>Building</item>
+        <item>Business</item>
+        <item>Establishment</item>
+        <item>Hotel</item>
+        <item>Industrial Plant</item>
         <item>Office</item>
+        <item>Parking</item>
         <item>Terrain</item>
-        <item>Industrial Ship</item>
     </string-array>
 
     <string name="str_number">%d</string>
@@ -41,4 +46,11 @@
 
     <string name="google_map_api_key">AIzaSyAbF82Yfz7IPBt-or_p821Ack9nhX6funU</string>
     <string name="send">Send</string>
+    <string name="parking">Parking</string>
+    <string name="office">Office</string>
+    <string name="kitchen_office">Kitchen Office</string>
+    <string name="near_transport">Near Transport</string>
+    <string name="reformed">Reformed</string>
+    <string name="energy_certificate">Energy Certificate</string>
+    <string name="kitchen">Kitchen</string>
 </resources>

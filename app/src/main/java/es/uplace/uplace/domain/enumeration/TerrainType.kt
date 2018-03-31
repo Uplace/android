@@ -1,8 +1,8 @@
-package es.uplace.uplace.domain.enumeration;
+package es.uplace.uplace.domain.enumeration
 
 /**
  * The TerrainType enumeration.
  */
-public enum TerrainType {
+enum class TerrainType {
     RESIDENTIAL, URBAN, RUSTIC, INDUSTRIAL
 }
