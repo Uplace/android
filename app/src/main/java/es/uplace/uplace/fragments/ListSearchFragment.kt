@@ -51,10 +51,9 @@ class ListSearchFragment : Fragment() {
             override fun onResponse(call: Call<List<Property>>?, response: Response<List<Property>>?) {
                 if (response != null) {
 
-                    val properties: List<Property> = response.body()!!
+                    val properties: List<Property> = response.body()!!.filter { property -> property.visible }
 
                     val adapter = ListSearchAdapter(properties)
-                    adapter.properties = properties
                     val recyclerProperty = view.findViewById<RecyclerView>(R.id.recyclerProperty)
                     recyclerProperty.adapter = adapter
                     recyclerProperty.layoutManager = LinearLayoutManager(context)
