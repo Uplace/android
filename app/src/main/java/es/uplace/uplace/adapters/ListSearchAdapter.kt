@@ -51,10 +51,10 @@ class ListSearchAdapter(var properties: List<Property>?) : RecyclerView.Adapter<
             txtSurface.text = "${property.surface}m2"
 
             if (property.photos.isNotEmpty())
-                imgProperty.setImageBitmap(byteArraytoBitmap(property.photos[0]))
+                imgProperty.setImageBitmap(byteArrayToBitmap(property.photos[0]))
         }
 
-        fun byteArraytoBitmap(photo: Photo): Bitmap {
+        private fun byteArrayToBitmap(photo: Photo): Bitmap {
             Log.d("ncs", photo.photo)
             val decodedString: ByteArray = Base64.decode(photo.photo, Base64.DEFAULT)
             return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
