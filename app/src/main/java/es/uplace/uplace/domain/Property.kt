@@ -1,9 +1,8 @@
 package es.uplace.uplace.domain
 
-import es.uplace.uplace.domain.enumeration.TransactionType
-
 open class Property(
         val title: String,
+        val photos: Array<Photo>,
         val reference: String,
         val description: String,
         val propertyType: String,

@@ -1,13 +1,18 @@
 package es.uplace.uplace.adapters
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.support.v7.widget.RecyclerView
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import es.uplace.uplace.R
+import es.uplace.uplace.domain.Photo
 import es.uplace.uplace.domain.Property
 
 class ListSearchAdapter(var properties: List<Property>?) : RecyclerView.Adapter<ListSearchAdapter.ViewHolder>() {
@@ -44,8 +49,16 @@ class ListSearchAdapter(var properties: List<Property>?) : RecyclerView.Adapter<
             }
 
             txtSurface.text = "${property.surface}m2"
+
+            if (property.photos.isNotEmpty())
+                imgProperty.setImageBitmap(byteArraytoBitmap(property.photos[0]))
         }
 
+        fun byteArraytoBitmap(photo: Photo): Bitmap {
+            Log.d("ncs", photo.photo)
+            val decodedString: ByteArray = Base64.decode(photo.photo, Base64.DEFAULT)
+            return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
@@ -59,6 +72,4 @@ class ListSearchAdapter(var properties: List<Property>?) : RecyclerView.Adapter<
         val property = properties!!.get(position)
         holder.bind(property)
     }
-
-
 }

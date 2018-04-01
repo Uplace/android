@@ -13,17 +13,11 @@ import android.widget.Toast
 
 import es.uplace.uplace.R
 import es.uplace.uplace.adapters.ListSearchAdapter
-import es.uplace.uplace.domain.Location
 import es.uplace.uplace.domain.Property
-import es.uplace.uplace.domain.enumeration.TransactionType
 import es.uplace.uplace.retrofit.PropertyService
-import es.uplace.uplace.retrofit.Service
-import kotlinx.android.synthetic.main.fragment_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class ListSearchFragment : Fragment() {
 
@@ -45,6 +39,7 @@ class ListSearchFragment : Fragment() {
         call.enqueue(object : Callback<List<Property>> {
             override fun onFailure(call: Call<List<Property>>?, t: Throwable?) {
                 Toast.makeText(context, "Error en Callback", Toast.LENGTH_LONG).show()
+                Log.d("ncs", "Error en Callback: " + t.toString())
                 pgBar.visibility = ProgressBar.GONE
             }
 
