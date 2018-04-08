@@ -25,13 +25,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.btnFilters -> drawer_layout.openDrawer(Gravity.START)
-            R.id.btnSearch -> startActivity(Intent(this, SearchActivity::class.java))
+//            R.id.btnFilters -> drawer_layout.openDrawer(Gravity.START)
+//            R.id.btnSearch -> startActivity(Intent(this, SearchActivity::class.java))
         }
     }
 
     private fun setClickListeners() {
-        btnFilters.setOnClickListener(this)
-        btnSearch.setOnClickListener(this)
+//        btnFilters.setOnClickListener(this)
+//        btnSearch.setOnClickListener(this)
     }
 }
