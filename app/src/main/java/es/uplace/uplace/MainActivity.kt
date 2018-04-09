@@ -17,16 +17,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         setClickListeners()
 
-        val adapter = ArrayAdapter.createFromResource(
-                this, R.array.dwelling_types, android.R.layout.simple_spinner_item)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinDwelling.adapter = adapter
+//        R.array.dwelling_types
+
     }
 
     override fun onClick(v: View) {
         when (v.id) {
 //            R.id.btnFilters -> drawer_layout.openDrawer(Gravity.START)
-//            R.id.btnSearch -> startActivity(Intent(this, SearchActivity::class.java))
+            R.id.btnSearch -> startActivity(Intent(this, SearchActivity::class.java))
         }
     }
 
