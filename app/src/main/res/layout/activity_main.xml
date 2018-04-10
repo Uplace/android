@@ -52,7 +52,7 @@
             android:background="@color/primary"
             android:cursorVisible="false"
             android:text="Buy"
-            android:textColor="@color/textPrimary" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btnRent"
@@ -61,7 +61,7 @@
             android:layout_weight="1"
             android:background="@color/primary"
             android:text="Rent"
-            android:textColor="@color/textPrimary" />
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btnTransfer"
@@ -70,30 +70,57 @@
             android:layout_weight="1"
             android:background="@color/primary"
             android:text="Transaction"
-            android:textColor="@color/textPrimary" />
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <SearchView
-        android:id="@+id/inputTxtMain"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_bg"
-        android:fontFamily="@font/roboto"
-        android:gravity="fill_vertical|start"
-        android:hint="@string/input_example"
-        android:iconifiedByDefault="false"
-        android:inputType="text"
-        android:isScrollContainer="false"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:textColor="@color/textPrimary"
-        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+    </SearchView>
+
+    <!--<SearchView-->
+        <!--android:id="@+id/inputTxtMain"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:background="@drawable/edit_text_bg"-->
+        <!--android:fontFamily="@font/roboto"-->
+        <!--android:gravity="fill_vertical|start"-->
+        <!--android:hint="@string/input_example"-->
+        <!--android:iconifiedByDefault="false"-->
+        <!--android:inputType="text"-->
+        <!--android:isScrollContainer="false"-->
+        <!--android:selectAllOnFocus="false"-->
+        <!--android:singleLine="true"-->
+        <!--android:textColor="@color/textPrimary"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />-->
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/accent"
+        android:text="@string/search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

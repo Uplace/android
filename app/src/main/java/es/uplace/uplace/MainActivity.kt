@@ -33,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         btnTransfer.setOnClickListener {
             changeSelected(btnTransfer)
         }
+        btnSearch.setOnClickListener {
+            startActivity(Intent(this, SearchActivity::class.java))
+        }
     }
 
     fun changeSelected(btn: Button) {
