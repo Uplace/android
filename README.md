@@ -40,9 +40,9 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Kotlin](https://kotlinlang.org/) - The web framework used
+* [Kotlin](https://kotlinlang.org/) - The language used
 * [Gradle](https://gradle.org/) - Dependency Management
-* [Retrofit](http://square.github.io/retrofit/) - Used to generate RSS Feeds
+* [Retrofit](http://square.github.io/retrofit/) - Used to make HTTP requests
 
 ## Versioning
 
