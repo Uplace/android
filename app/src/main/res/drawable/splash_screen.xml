@@ -2,6 +2,8 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@drawable/city" />
     <item
-        android:drawable="@mipmap/ic_launcher_foreground"
+        android:width="145dp"
+        android:height="110dp"
+        android:drawable="@drawable/up_logo"
         android:gravity="center" />
 </layer-list>

@@ -41,11 +41,9 @@ class MainActivity : AppCompatActivity() {
     fun changeSelected(btn: Button) {
         btn.isSelected = !btn.isSelected
         if (btn.isSelected) {
-            btn.setBackgroundColor(resources.getColor(R.color.primaryDark))
-            btn.setTextColor(Color.WHITE)
+            btn.background = resources.getDrawable(R.drawable.transaction_button_pressed, theme)
         } else {
-            btn.setBackgroundColor(resources.getColor(R.color.primary))
-            btn.setTextColor(resources.getColor(R.color.textPrimary))
+            btn.background = resources.getDrawable(R.drawable.transaction_button, theme)
         }
     }
 }
