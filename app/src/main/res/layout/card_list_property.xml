@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="16dp">
+    android:layout_marginTop="12dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,6 +27,17 @@
                 app:srcCompat="@color/primary" />
 
             <TextView
+                android:id="@+id/txtType"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
                 android:id="@+id/txtTransactionType"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
@@ -37,6 +48,7 @@
                 android:textColor="@color/textSecondary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
+
         </android.support.constraint.ConstraintLayout>
 
         <View
@@ -124,28 +136,6 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical|end"
                     android:text="@string/str_price"
-                    android:textColor="@color/textSecondary" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_weight="2"
-                    android:gravity="center_vertical|start"
-                    android:text="@string/property_type"
-                    android:textColor="@color/textSecondary" />
-
-                <TextView
-                    android:id="@+id/txtType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|end"
-                    android:text="@string/str_text"
                     android:textColor="@color/textSecondary" />
             </TableRow>
 

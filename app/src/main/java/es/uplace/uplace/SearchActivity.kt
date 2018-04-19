@@ -32,7 +32,7 @@ class SearchActivity : AppCompatActivity() {
         val search: MenuItem = menu!!.findItem(R.id.action_search)
         val searchView: SearchView = search.actionView as SearchView
         searchView.setQueryHint("Search");
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 Toast.makeText(applicationContext, "Query text submit", Toast.LENGTH_SHORT).show()
