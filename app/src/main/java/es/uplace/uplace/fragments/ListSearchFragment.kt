@@ -20,14 +20,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import es.uplace.uplace.PropertyActivity
+import es.uplace.uplace.domain.Content
 import es.uplace.uplace.domain.enumeration.TransactionType
 
 
 class ListSearchFragment : Fragment(), ListSearchAdapter.OnItemClickListener {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val v = inflater!!.inflate(R.layout.fragment_list, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val v = inflater.inflate(R.layout.fragment_list, container, false)
 
         findAllProperties(v)
 
@@ -40,20 +40,19 @@ class ListSearchFragment : Fragment(), ListSearchAdapter.OnItemClickListener {
         val call = propertyService.findAllProperties()
         Log.d("ncs", "Call: " + call.toString())
 
-        call.enqueue(object : Callback<List<Property>> {
-            override fun onFailure(call: Call<List<Property>>?, t: Throwable?) {
-                Toast.makeText(context, "Error en Callback", Toast.LENGTH_LONG).show()
-                Log.d("ncs", "Error en Callback: " + t.toString())
+        call.enqueue(object : Callback<Content> {
+            override fun onFailure(call: Call<Content>?, t: Throwable?) {
+                Toast.makeText(context, "Error en Callback", Toast.LENGTH_SHORT).show()
+                Log.d("ncs", "Error en Callback: ${t.toString()}")
                 pgBar.visibility = ProgressBar.GONE
             }
 
-            override fun onResponse(call: Call<List<Property>>?, response: Response<List<Property>>?) {
+            override fun onResponse(call: Call<Content>?, response: Response<Content>?) {
                 if (response != null) {
-
-                    val properties: List<Property> = response.body()!!.filter { property -> property.visible }
+                    val content: Content? = response.body()
+                    val properties: List<Property> = content?.content!!.filter { property -> property.visible }
 
                     val adapter = ListSearchAdapter(properties)
-                    adapter.setOnClickListener(this@ListSearchFragment)
                     val recyclerProperty = view.findViewById<RecyclerView>(R.id.recyclerProperty)
                     recyclerProperty.adapter = adapter
                     recyclerProperty.layoutManager = LinearLayoutManager(context)
@@ -64,6 +63,30 @@ class ListSearchFragment : Fragment(), ListSearchAdapter.OnItemClickListener {
             }
 
         })
+
+//        call.enqueue(object : Callback<List<Property>> {
+//            override fun onFailure(call: Call<List<Property>>?, t: Throwable?) {
+//                Toast.makeText(context, "Error en Callback", Toast.LENGTH_LONG).show()
+//                Log.d("ncs", "Error en Callback: " + t.toString())
+//                pgBar.visibility = ProgressBar.GONE
+//            }
+//
+//            override fun onResponse(call: Call<List<Property>>?, response: Response<List<Property>>?) {
+//                if (response != null) {
+//
+//                    val properties: List<Property> = response.body()!!.filter { property -> property.visible }
+//
+//                    val adapter = ListSearchAdapter(properties)
+//                    val recyclerProperty = view.findViewById<RecyclerView>(R.id.recyclerProperty)
+//                    recyclerProperty.adapter = adapter
+//                    recyclerProperty.layoutManager = LinearLayoutManager(context)
+//                } else {
+//                    Toast.makeText(context, "Response is null", Toast.LENGTH_LONG).show()
+//                }
+//                pgBar.visibility = ProgressBar.GONE
+//            }
+//
+//        })
     }
 
     override fun itemClicked(view: View, property: Property) {

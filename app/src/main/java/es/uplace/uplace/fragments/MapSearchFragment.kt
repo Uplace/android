@@ -22,9 +22,8 @@ class MapSearchFragment : Fragment(), OnMapReadyCallback {
     internal lateinit var mapView: MapView
     internal lateinit var map: GoogleMap
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val v = inflater!!.inflate(R.layout.fragment_map, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val v = inflater.inflate(R.layout.fragment_map, container, false)
 
         mapView = v.findViewById(R.id.map)
         mapView.onCreate(savedInstanceState)
@@ -32,6 +31,17 @@ class MapSearchFragment : Fragment(), OnMapReadyCallback {
 
         return v
     }
+
+//    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+//                              savedInstanceState: Bundle?): View? {
+//        val v = inflater!!.inflate(R.layout.fragment_map, container, false)
+//
+//        mapView = v.findViewById(R.id.map)
+//        mapView.onCreate(savedInstanceState)
+//        mapView.getMapAsync(this)
+//
+//        return v
+//    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
@@ -63,4 +73,4 @@ class MapSearchFragment : Fragment(), OnMapReadyCallback {
         super.onLowMemory()
         mapView.onLowMemory()
     }
-}// Required empty public constructor
+}
