@@ -21,8 +21,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import es.uplace.uplace.PropertyActivity
 import es.uplace.uplace.domain.Content
-import es.uplace.uplace.domain.enumeration.TransactionType
-
 
 class ListSearchFragment : Fragment(), ListSearchAdapter.OnItemClickListener {
 
@@ -34,10 +32,16 @@ class ListSearchFragment : Fragment(), ListSearchAdapter.OnItemClickListener {
         return v
     }
 
-    fun findAllProperties(view: View) {
+    private fun findAllProperties(view: View) {
         val pgBar = view.findViewById<ProgressBar>(R.id.pgBar)
         val propertyService = PropertyService.create()
-        val call = propertyService.findAllProperties()
+        val params: MutableMap<String, String>? = HashMap<String, String>()
+        params?.put("city.equals", "Barcelona")
+
+        val paramMap: Map<String, String> = HashMap(params)
+        paramMap.forEach { p -> Log.d("ncs", "$p")}
+
+        val call = propertyService.findAllProperties(paramMap)
         Log.d("ncs", "Call: " + call.toString())
 
         call.enqueue(object : Callback<Content> {
