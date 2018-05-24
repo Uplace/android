@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.support.v7.widget.SearchView
 import android.util.Log
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ProgressBar
 import android.widget.Toast
 import es.uplace.uplace.adapters.SearchPageAdapter
@@ -29,8 +30,14 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        setSupportActionBar(toolbarTop)
+        setSupportActionBar(app_bar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        app_bar.setNavigationOnClickListener(NavigationIconClickListener(
+                context = this,
+                sheet = property_grid,
+                interpolator = AccelerateDecelerateInterpolator()
+        ))
 
         findPropertiesByCriteria()
     }
