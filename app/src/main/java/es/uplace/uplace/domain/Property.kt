@@ -1,9 +1,6 @@
 package es.uplace.uplace.domain
 
-import android.os.Parcel
-import android.os.Parcelable
-
-data class Property(
+class Property(
         val title: String,
         val photos: Array<Photo>,
         val reference: String,
@@ -16,119 +13,13 @@ data class Property(
         val yearConstruction: Int,
         val priceTransfer: Double,
         val priceSell: Double,
-        val priceRent: Double) : Parcelable {
-    constructor(parcel: Parcel) : this(
-            parcel.readString(),
-            parcel.createTypedArray(Photo),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readInt(),
-            parcel.readParcelable(Location::class.java.classLoader),
-            parcel.readByte() != 0.toByte(),
-            parcel.readInt(),
-            parcel.readDouble(),
-            parcel.readDouble(),
-            parcel.readDouble()) {
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(title)
-        parcel.writeTypedArray(photos, flags)
-        parcel.writeString(reference)
-        parcel.writeString(description)
-        parcel.writeString(propertyType)
-        parcel.writeString(transaction)
-        parcel.writeInt(surface)
-        parcel.writeParcelable(location, flags)
-        parcel.writeByte(if (visible) 1 else 0)
-        parcel.writeInt(yearConstruction)
-        parcel.writeDouble(priceTransfer)
-        parcel.writeDouble(priceSell)
-        parcel.writeDouble(priceRent)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Property> {
-        override fun createFromParcel(parcel: Parcel): Property {
-            return Property(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Property?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
+        val priceRent: Double)
 
 data class Photo(val name: String, val description: String,
-                 val photoUrl: String, val photoContentType: String) : Parcelable {
-    constructor(parcel: Parcel) : this(
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString()) {
-    }
+                 val photoUrl: String, val photoContentType: String)
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-        parcel.writeString(description)
-        parcel.writeString(photoUrl)
-        parcel.writeString(photoContentType)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Photo> {
-        override fun createFromParcel(parcel: Parcel): Photo {
-            return Photo(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Photo?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
-
-data class Location(val id: Int, val latitude: Double, val longitude: Double, val postalCode: String,
-                    val city: String, val fullAddress: String) : Parcelable {
-    constructor(parcel: Parcel) : this(
-            parcel.readInt(),
-            parcel.readDouble(),
-            parcel.readDouble(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString()) {
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeDouble(latitude)
-        parcel.writeDouble(longitude)
-        parcel.writeString(postalCode)
-        parcel.writeString(city)
-        parcel.writeString(fullAddress)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Location> {
-        override fun createFromParcel(parcel: Parcel): Location {
-            return Location(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Location?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
+data class Location (val id: Int, val latitude: Double, val longitude: Double, val postalCode: String,
+                     val city: String, val fullAddress: String)
 
 /*
 private String name;

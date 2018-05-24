@@ -25,7 +25,7 @@
     <string name="square_meters">Square meters</string>
     <string name="number_of_rooms">Number of rooms</string>
 
-    <string-array name="categories_array">
+    <string-array name="dwelling_types">
         <item>Apartment</item>
         <item>Building</item>
         <item>Business</item>
@@ -57,6 +57,4 @@
     <string name="surface">Surface</string>
     <string name="city">City</string>
     <string name="error_city">City must contain at least 4 characters.</string>
-    <string name="no_response">No response</string>
-    <string name="appbar_scrolling_view_behavior">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
 </resources>

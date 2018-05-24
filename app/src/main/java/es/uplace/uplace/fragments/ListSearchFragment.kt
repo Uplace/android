@@ -21,36 +21,19 @@ import retrofit2.Callback
 import retrofit2.Response
 import es.uplace.uplace.PropertyActivity
 import es.uplace.uplace.domain.Content
-import kotlinx.android.synthetic.main.activity_search.view.*
-import kotlinx.android.synthetic.main.fragment_list.view.*
 
 class ListSearchFragment : Fragment(), ListSearchAdapter.OnItemClickListener {
-
-    companion object {
-        fun instance(properties: ArrayList<Property>): ListSearchFragment {
-            val fragment = ListSearchFragment()
-            val args = Bundle()
-            args.putParcelableArrayList("properties", properties)
-            fragment.arguments = args
-            return fragment
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_list, container, false)
 
-        val properties: List<Property> = arguments!!.getParcelableArrayList("properties")
-
-        val adapter = ListSearchAdapter(properties)
-        val recyclerProperty = v.recycler_property
-        recyclerProperty.adapter = adapter
-        recyclerProperty.layoutManager = LinearLayoutManager(context)
+        findAllProperties(v)
 
         return v
     }
 
     private fun findAllProperties(view: View) {
-        val pgBar = view.pg_bar
+        val pgBar = view.findViewById<ProgressBar>(R.id.pgBar)
         val propertyService = PropertyService.create()
         val params: MutableMap<String, String>? = HashMap<String, String>()
         params?.put("city.equals", "Barcelona")
@@ -74,7 +57,7 @@ class ListSearchFragment : Fragment(), ListSearchAdapter.OnItemClickListener {
                     val properties: List<Property> = content?.content!!.filter { property -> property.visible }
 
                     val adapter = ListSearchAdapter(properties)
-                    val recyclerProperty = view.recycler_property
+                    val recyclerProperty = view.findViewById<RecyclerView>(R.id.recyclerProperty)
                     recyclerProperty.adapter = adapter
                     recyclerProperty.layoutManager = LinearLayoutManager(context)
                 } else {
@@ -84,6 +67,30 @@ class ListSearchFragment : Fragment(), ListSearchAdapter.OnItemClickListener {
             }
 
         })
+
+//        call.enqueue(object : Callback<List<Property>> {
+//            override fun onFailure(call: Call<List<Property>>?, t: Throwable?) {
+//                Toast.makeText(context, "Error en Callback", Toast.LENGTH_LONG).show()
+//                Log.d("ncs", "Error en Callback: " + t.toString())
+//                pgBar.visibility = ProgressBar.GONE
+//            }
+//
+//            override fun onResponse(call: Call<List<Property>>?, response: Response<List<Property>>?) {
+//                if (response != null) {
+//
+//                    val properties: List<Property> = response.body()!!.filter { property -> property.visible }
+//
+//                    val adapter = ListSearchAdapter(properties)
+//                    val recyclerProperty = view.findViewById<RecyclerView>(R.id.recyclerProperty)
+//                    recyclerProperty.adapter = adapter
+//                    recyclerProperty.layoutManager = LinearLayoutManager(context)
+//                } else {
+//                    Toast.makeText(context, "Response is null", Toast.LENGTH_LONG).show()
+//                }
+//                pgBar.visibility = ProgressBar.GONE
+//            }
+//
+//        })
     }
 
     override fun itemClicked(view: View, property: Property) {

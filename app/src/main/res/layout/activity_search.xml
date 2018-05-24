@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity">
+    tools:context="es.uplace.uplace.SearchActivity">
 
 
     <RelativeLayout
@@ -14,92 +14,70 @@
         <RelativeLayout
             android:id="@+id/relLayoutTop"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_alignParentTop="true">
 
-            <LinearLayout
-                style="@style/Widget.Uplace.Filterdrop"
+            <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="100dp"
-                android:paddingBottom="100dp">
-
-                <include layout="@layout/filter_drop" />
-
-            </LinearLayout>
-
-            <android.support.design.widget.AppBarLayout
-                android:id="@+id/appbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="0dp">
+                android:id="@+id/appbar">
 
                 <android.support.v7.widget.Toolbar
-                    android:id="@+id/app_bar"
-                    style="@style/Widget.Uplace.Toolbar"
+                    android:id="@+id/toolbarTop"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:paddingEnd="12dp"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
-                    android:paddingStart="12dp"
-                    app:contentInsetStart="0dp"
-                    app:navigationIcon="?attr/homeAsUpIndicator"
-                    app:title="Searcher" />
+                    android:layout_height="wrap_content"
+                    app:navigationIcon="?attr/homeAsUpIndicator">
+
+                        <!--<android.support.v7.widget.SearchView-->
+                            <!--android:id="@+id/searchInput"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="80"-->
+                            <!--android:background="@drawable/edit_text_bg" />-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="48dp"-->
+                            <!--android:layout_height="48dp"-->
+                            <!--android:layout_weight="10"-->
+                            <!--app:srcCompat="@drawable/ic_filter_list_black" />-->
+
+
+                </android.support.v7.widget.Toolbar>
 
             </android.support.design.widget.AppBarLayout>
 
         </RelativeLayout>
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/property_grid"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/relLayoutBot"
-            android:layout_below="@+id/relLayoutTop"
-            android:elevation="6dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_below="@+id/relLayoutTop">
 
-            <RelativeLayout
+            <android.support.v4.view.ViewPager
+                android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ProgressBar
-                    android:id="@+id/pg_bar"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:indeterminate="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/container"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+            </android.support.v4.view.ViewPager>
 
-            </RelativeLayout>
-
-        </android.support.v4.widget.NestedScrollView>
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@id/relLayoutBot"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true">
 
             <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tabs"
-                    style="@style/Widget.Uplace.Toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center">
 
                 </android.support.design.widget.TabLayout>
