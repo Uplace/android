@@ -17,7 +17,9 @@ class MainActivity : AppCompatActivity() {
             if (!isCityValid(city_edit_text.text)) {
                 city_text_input.error = getString(R.string.error_city)
             } else {
-                val intent: Intent = Intent(this, SearchActivity::class.java)
+                city_text_input.error = null
+
+                val intent = Intent(this, SearchActivity::class.java)
                 intent.putExtra("city.equals", city_edit_text.text)
                 startActivity(intent)
             }
