@@ -1,6 +1,6 @@
 package es.uplace.uplace.domain
 
-open class Property(
+class Property(
         val title: String,
         val photos: Array<Photo>,
         val reference: String,
@@ -13,8 +13,35 @@ open class Property(
         val yearConstruction: Int,
         val priceTransfer: Double,
         val priceSell: Double,
-        val priceRent: Double
-)
+        val priceRent: Double)
+
+data class Photo(val name: String, val description: String,
+                 val photoUrl: String, val photoContentType: String)
+
+data class Location (val id: Int, val latitude: Double, val longitude: Double, val postalCode: String,
+                     val city: String, val fullAddress: String)
+
+/*
+private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "photo_url")
+    @URL(protocol = "https")
+    private String photoUrl;
+
+    @Column(name = "photo_public_id")
+    private String publicId;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Transient
+    private byte[] photo;
+
+    @NotNull
+    @Column(name = "thumbnail", nullable = false)
+    private Boolean thumbnail;
+ */
 
 //        Appartment Properties
 //    val numberBedrooms: Int
