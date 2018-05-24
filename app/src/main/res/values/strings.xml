@@ -55,4 +55,5 @@
     <string name="energy_certificate">Energy Certificate</string>
     <string name="kitchen">Kitchen</string>
     <string name="surface">Surface</string>
+    <string name="city">City</string>
 </resources>

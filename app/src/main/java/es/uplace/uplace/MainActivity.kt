@@ -3,13 +3,8 @@ package es.uplace.uplace
 import kotlinx.android.synthetic.main.activity_main.*
 
 import android.content.Intent
-import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
-import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,26 +19,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setClickListeners() {
-        btnBuy.setOnClickListener {
-            changeSelected(btnBuy)
-        }
-        btnRent.setOnClickListener {
-            changeSelected(btnRent)
-        }
-        btnTransfer.setOnClickListener {
-            changeSelected(btnTransfer)
-        }
-        btnSearch.setOnClickListener {
+//        btnBuy.setOnClickListener {
+//            changeSelected(btnBuy)
+//        }
+//        btnRent.setOnClickListener {
+//            changeSelected(btnRent)
+//        }
+//        btnTransfer.setOnClickListener {
+//            changeSelected(btnTransfer)
+//        }
+        search_button.setOnClickListener {
             startActivity(Intent(this, SearchActivity::class.java))
         }
     }
 
-    fun changeSelected(btn: Button) {
-        btn.isSelected = !btn.isSelected
-        if (btn.isSelected) {
-            btn.background = resources.getDrawable(R.drawable.transaction_button_pressed, theme)
-        } else {
-            btn.background = resources.getDrawable(R.drawable.transaction_button, theme)
-        }
-    }
+//    fun changeSelected(btn: Button) {
+//        btn.isSelected = !btn.isSelected
+//        if (btn.isSelected) {
+//            btn.background = resources.getDrawable(R.drawable.transaction_button_pressed, theme)
+//        } else {
+//            btn.background = resources.getDrawable(R.drawable.transaction_button, theme)
+//        }
+//    }
 }
