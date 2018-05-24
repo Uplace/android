@@ -33,12 +33,14 @@
             android:textAppearance="@style/TextAppearance.Uplace.Title" />
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/city_text_input"
             style="@style/Widget.Uplace.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/city">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/city_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
