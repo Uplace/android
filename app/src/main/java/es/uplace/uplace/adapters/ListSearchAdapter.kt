@@ -1,17 +1,12 @@
 package es.uplace.uplace.adapters
 
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.support.v7.widget.RecyclerView
-import android.util.Base64
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import es.uplace.uplace.R
-import es.uplace.uplace.domain.Photo
 import es.uplace.uplace.domain.Property
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.card_list_property.*
