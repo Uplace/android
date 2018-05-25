@@ -29,7 +29,7 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        setSupportActionBar(toolbarTop)
+        setSupportActionBar(toolbar_top)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         findPropertiesByCriteria()
@@ -82,10 +82,11 @@ class SearchActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Query text submit", Toast.LENGTH_SHORT).show()
                 return true
             }
-
             override fun onQueryTextChange(p0: String?) = false
-
         })
+
+//        val filter: MenuItem = menu!!.findItem(R.id.action_filters)
+//        filter.setOnMenuItemClickListener {  }
 
         return super.onCreateOptionsMenu(menu)
     }

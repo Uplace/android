@@ -13,19 +13,27 @@
         <RelativeLayout
             android:id="@+id/relLayoutTop"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true">
 
             <android.support.design.widget.AppBarLayout
+                android:id="@+id/app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/appbar">
+                android:layout_height="wrap_content"
+                android:elevation="0dp">
 
                 <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbarTop"
+                    android:id="@+id/toolbar_top"
+                    style="@style/Widget.Uplace.Toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:navigationIcon="?attr/homeAsUpIndicator">
+                    android:layout_height="?attr/actionBarSize"
+                    android:paddingEnd="12dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingStart="12dp"
+                    app:contentInsetStart="0dp"
+                    app:navigationIcon="?attr/homeAsUpIndicator"
+                    app:title="Searcher">
 
                 </android.support.v7.widget.Toolbar>
 
@@ -59,17 +67,18 @@
         <RelativeLayout
             android:id="@id/relLayoutBot"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">
 
             <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tabs"
+                    style="@style/Widget.Uplace.Toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="?attr/actionBarSize"
                     android:layout_gravity="center">
 
                 </android.support.design.widget.TabLayout>

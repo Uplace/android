@@ -4,14 +4,14 @@
 
     <item
         android:id="@+id/action_search"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_search"
         android:title="@string/search"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_filters"
-        android:icon="@drawable/ic_filter_list_black"
+        android:icon="@drawable/ic_filters"
         android:title="@string/filters"
         app:showAsAction="always" />
 
