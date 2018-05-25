@@ -1,13 +1,11 @@
 package es.uplace.uplace
 
-import android.os.Build
 import kotlinx.android.synthetic.main.activity_search.*
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.support.v7.widget.SearchView
 import android.util.Log
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ArrayAdapter
@@ -35,12 +33,6 @@ class SearchActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar_top)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-        toolbar_top.setNavigationOnClickListener(FilterIconClickListener(
-                this,
-                container,
-                AccelerateDecelerateInterpolator()
-        ))
 
         val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
                 this, R.array.dwelling_types, android.R.layout.simple_spinner_dropdown_item)
@@ -87,25 +79,10 @@ class SearchActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_toolbar, menu)
-//        val search: MenuItem = menu!!.findItem(R.id.action_search)
-//        val searchView: SearchView = search.actionView as SearchView
-//        searchView.setQueryHint("Search");
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//
-//            override fun onQueryTextSubmit(p0: String?): Boolean {
-//                Toast.makeText(applicationContext, "Query text submit", Toast.LENGTH_SHORT).show()
-//                return true
-//            }
-//            override fun onQueryTextChange(p0: String?) = false
-//        })
-
         val filter: MenuItem = menu!!.findItem(R.id.action_filters)
-        filter.setOnMenuItemClickListener {
-            Log.d("ncs", "Filter icon click")
-            FilterIconClickListener(this, container, AccelerateDecelerateInterpolator())
-            true
-        }
+        filter.setOnMenuItemClickListener(
+                FilterIconClickListener(this, container, AccelerateDecelerateInterpolator())
+        )
 
         return super.onCreateOptionsMenu(menu)
     }
