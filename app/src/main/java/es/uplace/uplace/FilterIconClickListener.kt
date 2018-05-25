@@ -27,7 +27,7 @@ class FilterIconClickListener @JvmOverloads internal constructor(
         animatorSet.end()
         animatorSet.cancel()
 
-        val translateY = height - 200
+        val translateY = height - context.resources.getDimensionPixelSize(R.dimen.property_recycler_view_reveal_height)
         val animator = ObjectAnimator.ofFloat(sheet, "translationY", (if (backdropShown) translateY else 0).toFloat())
 
         animator.duration = 500

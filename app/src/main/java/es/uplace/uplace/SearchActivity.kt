@@ -25,7 +25,7 @@ import retrofit2.Response
 
 class SearchActivity : AppCompatActivity() {
 
-    lateinit var searchPagerAdapter: SearchPageAdapter
+    private lateinit var searchPagerAdapter: SearchPageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
