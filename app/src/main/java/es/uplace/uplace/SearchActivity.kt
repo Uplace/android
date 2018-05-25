@@ -79,8 +79,9 @@ class SearchActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val filter: MenuItem = menu!!.findItem(R.id.action_filters)
-        filter.setOnMenuItemClickListener(
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
+        val filter: MenuItem? = menu?.findItem(R.id.action_filters)
+        filter?.setOnMenuItemClickListener(
                 FilterIconClickListener(this, container, AccelerateDecelerateInterpolator())
         )
 
@@ -100,7 +101,7 @@ class SearchActivity : AppCompatActivity() {
 
         tabs.setupWithViewPager(view_pager)
 
-        tabs.getTabAt(0)!!.setIcon(R.drawable.ic_view_list_black)
-        tabs.getTabAt(1)!!.setIcon(R.drawable.ic_map_black)
+        tabs.getTabAt(0)!!.setIcon(R.drawable.ic_list)
+        tabs.getTabAt(1)!!.setIcon(R.drawable.ic_map)
     }
 }
