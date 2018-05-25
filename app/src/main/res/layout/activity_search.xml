@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="es.uplace.uplace.SearchActivity">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -27,20 +26,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:navigationIcon="?attr/homeAsUpIndicator">
-
-                        <!--<android.support.v7.widget.SearchView-->
-                            <!--android:id="@+id/searchInput"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_weight="80"-->
-                            <!--android:background="@drawable/edit_text_bg" />-->
-
-                        <!--<ImageView-->
-                            <!--android:layout_width="48dp"-->
-                            <!--android:layout_height="48dp"-->
-                            <!--android:layout_weight="10"-->
-                            <!--app:srcCompat="@drawable/ic_filter_list_black" />-->
-
 
                 </android.support.v7.widget.Toolbar>
 
@@ -93,29 +78,6 @@
 
         </RelativeLayout>
 
-
     </RelativeLayout>
-
-
-    <!--<FrameLayout-->
-    <!--android:id="@+id/searchFrame"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="0dp"-->
-    <!--app:layout_constraintBottom_toTopOf="@+id/navigation"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--<android.support.design.widget.BottomNavigationView-->
-    <!--android:id="@+id/navigation"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginEnd="0dp"-->
-    <!--android:layout_marginStart="0dp"-->
-    <!--android:background="?android:attr/windowBackground"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintLeft_toLeftOf="parent"-->
-    <!--app:layout_constraintRight_toRightOf="parent"-->
-    <!--app:menu="@menu/navigation" />-->
 
 </android.support.design.widget.CoordinatorLayout>
