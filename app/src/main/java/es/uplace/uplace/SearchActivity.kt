@@ -1,5 +1,6 @@
 package es.uplace.uplace
 
+import android.os.Build
 import kotlinx.android.synthetic.main.activity_search.*
 
 import android.os.Bundle
@@ -8,6 +9,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.support.v7.widget.SearchView
 import android.util.Log
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.Toast
 import es.uplace.uplace.adapters.SearchPageAdapter
@@ -17,6 +20,7 @@ import es.uplace.uplace.domain.Property
 import es.uplace.uplace.fragments.ListSearchFragment
 import es.uplace.uplace.fragments.MapSearchFragment
 import es.uplace.uplace.retrofit.PropertyService
+import kotlinx.android.synthetic.main.filter_drop.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,6 +35,17 @@ class SearchActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar_top)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        toolbar_top.setNavigationOnClickListener(FilterIconClickListener(
+                this,
+                container,
+                AccelerateDecelerateInterpolator()
+        ))
+
+        val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+                this, R.array.dwelling_types, android.R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        filter_category_spinner.adapter = adapter
 
         findPropertiesByCriteria()
     }
@@ -73,20 +88,24 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar, menu)
-        val search: MenuItem = menu!!.findItem(R.id.action_search)
-        val searchView: SearchView = search.actionView as SearchView
-        searchView.setQueryHint("Search");
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//        val search: MenuItem = menu!!.findItem(R.id.action_search)
+//        val searchView: SearchView = search.actionView as SearchView
+//        searchView.setQueryHint("Search");
+//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//
+//            override fun onQueryTextSubmit(p0: String?): Boolean {
+//                Toast.makeText(applicationContext, "Query text submit", Toast.LENGTH_SHORT).show()
+//                return true
+//            }
+//            override fun onQueryTextChange(p0: String?) = false
+//        })
 
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                Toast.makeText(applicationContext, "Query text submit", Toast.LENGTH_SHORT).show()
-                return true
-            }
-            override fun onQueryTextChange(p0: String?) = false
-        })
-
-//        val filter: MenuItem = menu!!.findItem(R.id.action_filters)
-//        filter.setOnMenuItemClickListener {  }
+        val filter: MenuItem = menu!!.findItem(R.id.action_filters)
+        filter.setOnMenuItemClickListener {
+            Log.d("ncs", "Filter icon click")
+            FilterIconClickListener(this, container, AccelerateDecelerateInterpolator())
+            true
+        }
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -100,9 +119,9 @@ class SearchActivity : AppCompatActivity() {
 
         searchPagerAdapter.fragments = listOf(listSearchFragment, mapFragment)
 
-        container.adapter = searchPagerAdapter
+        view_pager.adapter = searchPagerAdapter
 
-        tabs.setupWithViewPager(container)
+        tabs.setupWithViewPager(view_pager)
 
         tabs.getTabAt(0)!!.setIcon(R.drawable.ic_view_list_black)
         tabs.getTabAt(1)!!.setIcon(R.drawable.ic_map_black)

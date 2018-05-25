@@ -8,19 +8,20 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
 
         <RelativeLayout
             android:id="@+id/relLayoutTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            android:elevation="4dp">
 
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="0dp">
+                android:layout_height="wrap_content">
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar_top"
@@ -41,11 +42,28 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/filters_drop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/relLayoutBot"
-            android:layout_below="@+id/relLayoutTop">
+            android:layout_below="@+id/relLayoutTop"
+            android:background="@color/colorPrimary"
+            android:elevation="0dp"
+            android:orientation="vertical">
+
+            <include layout="@layout/filter_drop" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/relLayoutBot"
+            android:layout_below="@+id/relLayoutTop"
+            android:background="@android:color/white"
+            android:elevation="2dp">
 
             <ProgressBar
                 android:id="@+id/pg_bar"
@@ -58,7 +76,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.v4.view.ViewPager
-                android:id="@+id/container"
+                android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -68,7 +86,8 @@
             android:id="@id/relLayoutBot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:elevation="4dp">
 
             <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"

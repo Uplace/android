@@ -7,7 +7,7 @@
     <color name="colorSecondaryDark">#c89e00</color>
     <color name="colorSecondaryLight">#ffff77</color>
     <color name="colorTextPrimary">#442c2e</color>
-    <color name="colotTextSecondary">#442c2e</color>
+    <color name="colorTextSecondary">#442c2e</color>
     <color name="divider">#898989</color>
     <color name="mainPageBackgroundColor">#e3f2fd</color>
 </resources>
