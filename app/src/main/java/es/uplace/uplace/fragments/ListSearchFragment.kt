@@ -71,7 +71,7 @@ class ListSearchFragment : Fragment(), ListSearchAdapter.OnItemClickListener {
             override fun onResponse(call: Call<Content>?, response: Response<Content>?) {
                 if (response != null) {
                     val content: Content? = response.body()
-                    val properties: List<Property> = content?.content!!.filter { property -> property.visible }
+                    val properties: List<Property> = content?.content!!
 
                     val adapter = ListSearchAdapter(properties)
                     val recyclerProperty = view.recycler_property
