@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
             } else {
                 city_text_input.error = null
 
-                val intent: Intent = Intent(this, SearchActivity::class.java)
-                intent.putExtra("city.equals", city_edit_text.text)
+                val intent = Intent(this, SearchActivity::class.java)
+                intent.putExtra("city", city_edit_text.text.toString())
                 startActivity(intent)
             }
         }

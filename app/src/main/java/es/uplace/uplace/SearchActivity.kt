@@ -1,5 +1,6 @@
 package es.uplace.uplace
 
+import android.content.Intent
 import kotlinx.android.synthetic.main.activity_search.*
 
 import android.os.Bundle
@@ -27,6 +28,9 @@ class SearchActivity : AppCompatActivity() {
 
     private lateinit var searchPagerAdapter: SearchPageAdapter
 
+    private val params: MutableMap<String, String> = HashMap()
+    private var intentCity: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -39,14 +43,22 @@ class SearchActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         filter_category_spinner.adapter = adapter
 
+        getIntentExtras()
+
         findPropertiesByCriteria()
+    }
+
+    private fun getIntentExtras() {
+        intentCity = intent.getStringExtra("city")
     }
 
     private fun findPropertiesByCriteria() {
 
+        params.clear()
+
         val propertyService = PropertyService.create()
-        val params: MutableMap<String, String>? = HashMap()
-        params?.put("city.equals", "Barcelona")
+        intentCity?.let { params.put("city.equals", it) }
+        params.put("sort", "id,asc")
 
         val paramMap: Map<String, String> = HashMap(params)
         paramMap.forEach { p -> Log.d("ncs", "$p") }
