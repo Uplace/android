@@ -4,6 +4,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
 import android.util.Log
@@ -60,7 +61,12 @@ class SearchActivity : AppCompatActivity() {
 
     private fun getIntentExtras() {
         intentCity = intent.getStringExtra("city")
+        filter_city_edit_text.setText(intentCity)
         intentCategory = intent.getStringExtra("category")
+        if (intentCategory != null)
+        filter_category_spinner.setSelection(
+                Constants.categories.indexOf(intentCategory!!)
+        )
     }
 
     private fun findPropertiesByCriteriaFromMain() {
