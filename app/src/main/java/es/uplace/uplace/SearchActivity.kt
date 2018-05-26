@@ -23,9 +23,6 @@ import kotlinx.android.synthetic.main.filter_drop.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS
-import android.content.Context.INPUT_METHOD_SERVICE
-import android.support.v4.content.ContextCompat.getSystemService
 import android.view.inputmethod.InputMethodManager
 
 
@@ -39,8 +36,8 @@ class SearchActivity : AppCompatActivity() {
     var mapFragment = MapSearchFragment()
 
     private val params: MutableMap<String, String> = HashMap()
-    private var priceFrom: Int? = null
-    private var priceTo: Int? = null
+    private var priceFrom: Int = 0
+    private var priceTo: Int = 10000
 
     private var intentCity: String? = null
     private var intentCategory: String? = null
@@ -71,9 +68,10 @@ class SearchActivity : AppCompatActivity() {
         filter_price_multislider.setOnThumbValueChangeListener(
                 { _, _, thumbIndex, value ->
                     when (thumbIndex) {
-                        0 -> priceFrom = value
-                        1 -> priceTo = value
+                        0 -> priceFrom = value * 100
+                        1 -> priceTo = value * 100
                     }
+                    filter_price_text.text = "Price: $priceFrom€ - $priceTo€"
                 }
         )
 
@@ -105,7 +103,6 @@ class SearchActivity : AppCompatActivity() {
                     InputMethodManager.HIDE_NOT_ALWAYS)
         }
     }
-//    price.greaterOrEqualThan=1&price.lessOrEqualThan=2
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar, menu)

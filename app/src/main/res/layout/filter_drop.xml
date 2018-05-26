@@ -52,7 +52,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@id/filter_price_text"
-            android:text="1000000€" />
+            android:text="10000€" />
 
         <io.apptik.widget.MultiSlider
             android:id="@+id/filter_price_multislider"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/filter_price_0"
             app:drawThumbsApart="true"
-            app:stepsThumbsApart="5"
+            app:stepsThumbsApart="1"
             app:thumbNumber="2" />
 
     </RelativeLayout>
