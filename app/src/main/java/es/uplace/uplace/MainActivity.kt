@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        categories.add("Category")
+
         findCategories()
 
         main_search_button.setOnClickListener {
@@ -41,8 +43,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setCategories() {
-        categories.add("Category")
-
         val adapter: ArrayAdapter<CharSequence> = ArrayAdapter(
                 this@MainActivity,
                 android.R.layout.simple_spinner_dropdown_item,
@@ -68,7 +68,6 @@ class MainActivity : AppCompatActivity() {
                 if (response != null) {
                     val filters: Filters? = response.body()
                     filters?.typeProperties?.let { categories.addAll(it) }
-
                     setCategories()
                 } else {
                     main_category_spinner.isEnabled = false
