@@ -64,8 +64,7 @@
             android:layout_above="@+id/relLayoutBot"
             android:layout_below="@+id/relLayoutTop"
             android:background="@android:color/white"
-            android:elevation="2dp"
-            android:visibility="gone">
+            android:elevation="2dp">
 
             <ProgressBar
                 android:id="@+id/pg_bar"

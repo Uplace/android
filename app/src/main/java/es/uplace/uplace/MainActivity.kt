@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         main_category_spinner.adapter = adapter
     }
 
-    private fun isCityValid(text: Editable?): Boolean {
+    fun isCityValid(text: Editable?): Boolean {
         return text != null && text.length >= 3
     }
 

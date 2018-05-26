@@ -55,6 +55,7 @@
             android:text="1000000€" />
 
         <io.apptik.widget.MultiSlider
+            android:id="@+id/filter_price_multislider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/filter_price_0"
@@ -69,7 +70,7 @@
         android:layout_height="wrap_content">
 
         <android.support.design.button.MaterialButton
-            android:id="@+id/filter_search_button"
+            android:id="@+id/filter_done_button"
             style="@style/Widget.Uplace.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,8 +85,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
-            android:layout_toLeftOf="@id/filter_search_button"
-            android:layout_toStartOf="@id/filter_search_button"
+            android:layout_toLeftOf="@id/filter_done_button"
+            android:layout_toStartOf="@id/filter_done_button"
             android:text="@string/clear" />
 
     </RelativeLayout>

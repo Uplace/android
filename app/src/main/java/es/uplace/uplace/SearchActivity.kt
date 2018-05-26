@@ -4,10 +4,8 @@ import kotlinx.android.synthetic.main.activity_search.*
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
-import android.util.Log
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
@@ -29,7 +27,15 @@ class SearchActivity : AppCompatActivity() {
 
     private lateinit var searchPagerAdapter: SearchPageAdapter
 
+    var properties: ArrayList<Property> = arrayListOf()
+
+    var listSearchFragment = ListSearchFragment.instance(properties)
+    var mapFragment = MapSearchFragment()
+
     private val params: MutableMap<String, String> = HashMap()
+    private var priceFrom: Int? = null
+    private var priceTo: Int? = null
+
     private var intentCity: String? = null
     private var intentCategory: String? = null
 
@@ -39,6 +45,8 @@ class SearchActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar_top)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        setupViewPager()
 
         for (i in 0 until filters_drop.childCount) {
             val v = filters_drop.getChildAt(i)
@@ -54,54 +62,40 @@ class SearchActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         filter_category_spinner.adapter = adapter
 
+        filter_price_multislider.setOnThumbValueChangeListener(
+                { _, _, thumbIndex, value ->
+                    when (thumbIndex) {
+                        0 -> priceFrom = value
+                        1 -> priceTo = value
+                    }
+                }
+        )
+
         getIntentExtras()
 
-        findPropertiesByCriteriaFromMain()
-    }
+        makeCriteriaFromMain()
+        findProperties()
 
-    private fun getIntentExtras() {
-        intentCity = intent.getStringExtra("city")
-        filter_city_edit_text.setText(intentCity)
-        intentCategory = intent.getStringExtra("category")
-        if (intentCategory != null)
-        filter_category_spinner.setSelection(
-                Constants.categories.indexOf(intentCategory!!)
-        )
-    }
+        filter_done_button.setOnClickListener {
+            if (!MainActivity().isCityValid(filter_city_edit_text.text)) {
+                filter_city_text_input.error = getString(R.string.error_city)
+            } else {
+                filter_city_text_input.error = null
 
-    private fun findPropertiesByCriteriaFromMain() {
+                params.clear()
 
-        params.clear()
+                params["sort"] = "id,asc"
+                params["city.equals"] = filter_city_edit_text.text.toString()
+                if (filter_category_spinner.selectedItemPosition != 0)
+                    params["category.equals"] = filter_category_spinner.selectedItem.toString()
+                if (priceFrom != null) params["price.greaterOrEqualThan"] = priceFrom.toString()
+                if (priceTo != null) params["price.lessOrEqualThan"] = priceTo.toString()
 
-        intentCity?.let { params.put("city.equals", it) }
-        intentCategory?.let { params.put("category.equals", it) }
-        params["sort"] = "id,asc"
-
-        val paramMap: Map<String, String> = HashMap(params)
-        paramMap.forEach { p -> Log.d("ncs", "$p") }
-
-        val propertyService = PropertyService.create()
-        val call = propertyService.findPropertiesByCriteria(paramMap)
-        Log.d("ncs", "Call: " + call.toString())
-
-        call.enqueue(object : Callback<Content> {
-            override fun onFailure(call: Call<Content>?, t: Throwable?) {
-                Toast.makeText(this@SearchActivity, "Error en Callback", Toast.LENGTH_SHORT).show()
-                pg_bar.visibility = ProgressBar.GONE
+                findProperties()
             }
-
-            override fun onResponse(call: Call<Content>?, response: Response<Content>?) {
-                if (response != null) {
-                    val content: Content? = response.body()
-                    val properties = content?.content!!
-                    setupViewPager(properties)
-                } else {
-                    Toast.makeText(this@SearchActivity, getString(R.string.no_response), Toast.LENGTH_LONG).show()
-                }
-                pg_bar.visibility = ProgressBar.GONE
-            }
-        })
+        }
     }
+//    price.greaterOrEqualThan=1&price.lessOrEqualThan=2
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar, menu)
@@ -113,12 +107,19 @@ class SearchActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun setupViewPager(properties: List<Property>?) {
+    private fun getIntentExtras() {
+        intentCity = intent.getStringExtra("city")
+        filter_city_edit_text.setText(intentCity)
+        intentCategory = intent.getStringExtra("category")
+        if (intentCategory != null)
+            filter_category_spinner.setSelection(
+                    Constants.categories.indexOf(intentCategory!!)
+            )
+    }
+
+    private fun setupViewPager() {
 
         searchPagerAdapter = SearchPageAdapter(supportFragmentManager)
-
-        val listSearchFragment = ListSearchFragment.instance(properties = ArrayList(properties))
-        val mapFragment = MapSearchFragment()
 
         searchPagerAdapter.fragments = listOf(listSearchFragment, mapFragment)
 
@@ -128,5 +129,40 @@ class SearchActivity : AppCompatActivity() {
 
         tabs.getTabAt(0)!!.setIcon(R.drawable.ic_list)
         tabs.getTabAt(1)!!.setIcon(R.drawable.ic_map)
+    }
+
+    private fun makeCriteriaFromMain() {
+        params.clear()
+
+        intentCity?.let { params.put("city.equals", it) }
+        intentCategory?.let { params.put("category.equals", it) }
+        params["sort"] = "id,asc"
+    }
+
+    private fun findProperties() {
+        val paramMap: Map<String, String> = HashMap(params)
+        val propertyService = PropertyService.create()
+        val call = propertyService.findPropertiesByCriteria(paramMap)
+
+        call.enqueue(object : Callback<Content> {
+            override fun onFailure(call: Call<Content>?, t: Throwable?) {
+                Toast.makeText(this@SearchActivity, "Error en Callback", Toast.LENGTH_SHORT).show()
+                pg_bar.visibility = ProgressBar.GONE
+            }
+
+            override fun onResponse(call: Call<Content>?, response: Response<Content>?) {
+                if (response != null) {
+                    val content: Content? = response.body()
+                    if (content?.content != null) {
+                        properties.clear()
+                        properties = content.content as ArrayList<Property>
+                    }
+                    listSearchFragment.updatePropertyList(properties)
+                } else {
+                    Toast.makeText(this@SearchActivity, getString(R.string.no_response), Toast.LENGTH_LONG).show()
+                }
+                pg_bar.visibility = ProgressBar.GONE
+            }
+        })
     }
 }
