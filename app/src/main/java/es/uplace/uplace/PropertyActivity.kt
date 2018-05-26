@@ -1,5 +1,7 @@
 package es.uplace.uplace
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import kotlinx.android.synthetic.main.activity_property.*
 
 import android.support.v7.app.AppCompatActivity
@@ -14,16 +16,9 @@ class PropertyActivity : AppCompatActivity() {
     var propertyCharAdapter = PropertyCharAdapter(this)
     var propertyExtraAdapter = PropertyExtraAdapter(this)
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_property)
-
-        txtName.text = "Test Nombre Largo, 1, 2, 3"
-        txtLocation.text = "Test Location: c/Lorem ipsum 123, Prpl. 4 08001, Barcelona, Spain"
-        txtPrice.text = "Venta: 999999.99€"
-        recyclerChars.layoutManager = GridLayoutManager(this, 2)
-        recyclerExtras.layoutManager = GridLayoutManager(this, 2)
-        recyclerChars.adapter = propertyCharAdapter
-        recyclerExtras.adapter = propertyExtraAdapter
     }
 }

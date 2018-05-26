@@ -1,63 +1,47 @@
 package es.uplace.uplace.fragments
 
+import kotlinx.android.synthetic.main.fragment_list.view.*
+
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.Toast
 
 import es.uplace.uplace.R
-import es.uplace.uplace.adapters.ListSearchAdapter
+import es.uplace.uplace.adapters.PropertyCardRecyclerViewAdapter
 import es.uplace.uplace.domain.Property
-import es.uplace.uplace.retrofit.PropertyService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class ListSearchFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val v = inflater!!.inflate(R.layout.fragment_list, container, false)
+    private var properties: ArrayList<Property> = arrayListOf()
+    lateinit var recyclerProperty: RecyclerView
 
-        findAllProperties(v)
+    companion object {
+        fun instance(properties: ArrayList<Property>): ListSearchFragment {
+            val fragment = ListSearchFragment()
+            val args = Bundle()
+            args.putParcelableArrayList("properties", properties)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val v = inflater.inflate(R.layout.fragment_list, container, false)
+        recyclerProperty = v.recycler_property
+
+        properties = arguments!!.getParcelableArrayList("properties")
+        updatePropertyList(properties)
 
         return v
     }
 
-    fun findAllProperties(view: View) {
-        val pgBar = view.findViewById<ProgressBar>(R.id.pgBar)
-        val propertyService = PropertyService.create()
-        val call = propertyService.findAllProperties()
-        Log.d("ncs", "Call: " + call.toString())
-
-        call.enqueue(object : Callback<List<Property>> {
-            override fun onFailure(call: Call<List<Property>>?, t: Throwable?) {
-                Toast.makeText(context, "Error en Callback", Toast.LENGTH_LONG).show()
-                Log.d("ncs", "Error en Callback: " + t.toString())
-                pgBar.visibility = ProgressBar.GONE
-            }
-
-            override fun onResponse(call: Call<List<Property>>?, response: Response<List<Property>>?) {
-                if (response != null) {
-
-                    val properties: List<Property> = response.body()!!.filter { property -> property.visible }
-
-                    val adapter = ListSearchAdapter(properties)
-                    val recyclerProperty = view.findViewById<RecyclerView>(R.id.recyclerProperty)
-                    recyclerProperty.adapter = adapter
-                    recyclerProperty.layoutManager = LinearLayoutManager(context)
-                } else {
-                    Toast.makeText(context, "Response is null", Toast.LENGTH_LONG).show()
-                }
-                pgBar.visibility = ProgressBar.GONE
-            }
-
-        })
+    fun updatePropertyList(properties: ArrayList<Property>) {
+        val adapter = PropertyCardRecyclerViewAdapter(properties)
+        recyclerProperty.adapter = adapter
+        recyclerProperty.layoutManager = LinearLayoutManager(context)
     }
 }

@@ -55,4 +55,12 @@
     <string name="energy_certificate">Energy Certificate</string>
     <string name="kitchen">Kitchen</string>
     <string name="surface">Surface</string>
+    <string name="city">City</string>
+    <string name="error_city">City must contain at least 3 characters.</string>
+    <string name="no_response">No response</string>
+    <string name="price_from">Price from</string>
+    <string name="price_to">Price to</string>
+    <string name="category">Category</string>
+    <string name="done">Done</string>
+    <string name="clear">Clear</string>
 </resources>
