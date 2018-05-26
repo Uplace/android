@@ -1,5 +1,6 @@
 package es.uplace.uplace
 
+import android.content.Context
 import kotlinx.android.synthetic.main.activity_search.*
 
 import android.os.Bundle
@@ -22,6 +23,11 @@ import kotlinx.android.synthetic.main.filter_drop.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.support.v4.content.ContextCompat.getSystemService
+import android.view.inputmethod.InputMethodManager
+
 
 class SearchActivity : AppCompatActivity() {
 
@@ -93,6 +99,10 @@ class SearchActivity : AppCompatActivity() {
 
                 findProperties()
             }
+
+            val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken,
+                    InputMethodManager.HIDE_NOT_ALWAYS)
         }
     }
 //    price.greaterOrEqualThan=1&price.lessOrEqualThan=2
