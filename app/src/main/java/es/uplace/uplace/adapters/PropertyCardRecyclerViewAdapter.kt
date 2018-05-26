@@ -1,10 +1,12 @@
 package es.uplace.uplace.adapters
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
 import com.squareup.picasso.Picasso
+import es.uplace.uplace.PropertyActivity
 
 import es.uplace.uplace.R
 import es.uplace.uplace.adapters.viewholders.PropertyCardViewHolder
@@ -41,6 +43,12 @@ class PropertyCardRecyclerViewAdapter internal constructor(
                 Picasso.with(holder.itemView.context)
                         .load(property.photos[0].photoUrl)
                         .into(holder.propertyImage)
+
+            holder.itemView.setOnClickListener {
+                val intent = Intent(holder.itemView.context, PropertyActivity::class.java)
+                intent.putExtra("reference", property.reference)
+                holder.itemView.context.startActivity(intent)
+            }
         }
     }
 }

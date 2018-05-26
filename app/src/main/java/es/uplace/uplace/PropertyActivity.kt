@@ -20,19 +20,5 @@ class PropertyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_property)
-
-        val intent: Intent = getIntent()
-        val name: String = intent.getStringExtra("name")
-        val location: String = intent.getStringExtra("location")
-        val price: String = intent.getStringExtra("price")
-        val transaction: String = intent.getStringExtra("transaction")
-
-        txtName.text = name
-        txtLocation.text = location
-        txtPrice.text = "$transaction: $price€"
-        recyclerChars.layoutManager = GridLayoutManager(this, 2)
-        recyclerExtras.layoutManager = GridLayoutManager(this, 2)
-        recyclerChars.adapter = propertyCharAdapter
-        recyclerExtras.adapter = propertyExtraAdapter
     }
 }
