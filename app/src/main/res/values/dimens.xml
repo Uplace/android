@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="property_recycler_view_reveal_height">250dp</dimen>
+    <dimen name="filter_item_margin_bottom">8dp</dimen>
 </resources>

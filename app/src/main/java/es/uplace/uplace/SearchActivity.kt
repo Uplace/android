@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.util.Log
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Toast
 import es.uplace.uplace.adapters.SearchPageAdapter
@@ -37,6 +38,13 @@ class SearchActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar_top)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        for (i in 0 until filters_drop.childCount) {
+            val v = filters_drop.getChildAt(i)
+            val params = v.layoutParams as LinearLayout.LayoutParams
+            params.bottomMargin = resources.getDimensionPixelSize(R.dimen.filter_item_margin_bottom)
+            v.layoutParams = params
+        }
 
         val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
                 this, R.array.dwelling_types, android.R.layout.simple_spinner_dropdown_item)

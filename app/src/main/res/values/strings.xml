@@ -61,4 +61,6 @@
     <string name="price_from">Price from</string>
     <string name="price_to">Price to</string>
     <string name="category">Category</string>
+    <string name="done">Done</string>
+    <string name="clear">Clear</string>
 </resources>
