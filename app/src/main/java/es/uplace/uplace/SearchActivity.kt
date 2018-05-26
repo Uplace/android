@@ -46,14 +46,16 @@ class SearchActivity : AppCompatActivity() {
             v.layoutParams = params
         }
 
-        val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
-                this, R.array.dwelling_types, android.R.layout.simple_spinner_dropdown_item)
+        val adapter: ArrayAdapter<CharSequence> = ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_dropdown_item,
+                Constants.categories as List<CharSequence>?)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         filter_category_spinner.adapter = adapter
 
         getIntentExtras()
 
-        findPropertiesByCriteria()
+        findPropertiesByCriteriaFromMain()
     }
 
     private fun getIntentExtras() {
@@ -61,7 +63,7 @@ class SearchActivity : AppCompatActivity() {
         intentCategory = intent.getStringExtra("category")
     }
 
-    private fun findPropertiesByCriteria() {
+    private fun findPropertiesByCriteriaFromMain() {
 
         params.clear()
 

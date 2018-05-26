@@ -16,13 +16,11 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    var categories: MutableList<String> = mutableListOf()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        categories.add("Category")
+        Constants.categories.add("Category")
 
         findCategories()
 
@@ -46,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         val adapter: ArrayAdapter<CharSequence> = ArrayAdapter(
                 this@MainActivity,
                 android.R.layout.simple_spinner_dropdown_item,
-                categories as List<CharSequence>?)
+                Constants.categories as List<CharSequence>?)
 
         main_category_spinner.adapter = adapter
     }
@@ -67,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Filters>?, response: Response<Filters>?) {
                 if (response != null) {
                     val filters: Filters? = response.body()
-                    filters?.typeProperties?.let { categories.addAll(it) }
+                    filters?.typeProperties?.let { Constants.categories.addAll(it) }
                     setCategories()
                 } else {
                     main_category_spinner.isEnabled = false
