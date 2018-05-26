@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -58,7 +57,7 @@ class ListSearchFragment : Fragment(), ListSearchAdapter.OnItemClickListener {
         val paramMap: Map<String, String> = HashMap(params)
         paramMap.forEach { p -> Log.d("ncs", "$p")}
 
-        val call = propertyService.findAllProperties(paramMap)
+        val call = propertyService.findPropertiesByCriteria(paramMap)
         Log.d("ncs", "Call: " + call.toString())
 
         call.enqueue(object : Callback<Content> {

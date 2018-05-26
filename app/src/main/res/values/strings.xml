@@ -60,4 +60,5 @@
     <string name="no_response">No response</string>
     <string name="price_from">Price from</string>
     <string name="price_to">Price to</string>
+    <string name="category">Category</string>
 </resources>

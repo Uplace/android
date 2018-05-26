@@ -32,14 +32,14 @@
             android:textAppearance="@style/TextAppearance.Uplace.Title" />
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/city_text_input"
+            android:id="@+id/main_city_text_input"
             style="@style/Widget.Uplace.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/city">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/city_edit_text"
+                android:id="@+id/main_city_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -47,12 +47,20 @@
 
         </android.support.design.widget.TextInputLayout>
 
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/main_category_spinner"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/category"
+            android:spinnerMode="dropdown" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.design.button.MaterialButton
-                android:id="@+id/search_button"
+                android:id="@+id/main_search_button"
                 style="@style/Widget.Uplace.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

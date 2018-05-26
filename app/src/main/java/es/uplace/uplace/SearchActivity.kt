@@ -1,6 +1,5 @@
 package es.uplace.uplace
 
-import android.content.Intent
 import kotlinx.android.synthetic.main.activity_search.*
 
 import android.os.Bundle
@@ -30,6 +29,7 @@ class SearchActivity : AppCompatActivity() {
 
     private val params: MutableMap<String, String> = HashMap()
     private var intentCity: String? = null
+    private var intentCategory: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,37 +50,34 @@ class SearchActivity : AppCompatActivity() {
 
     private fun getIntentExtras() {
         intentCity = intent.getStringExtra("city")
+        intentCategory = intent.getStringExtra("category")
     }
 
     private fun findPropertiesByCriteria() {
 
         params.clear()
 
-        val propertyService = PropertyService.create()
         intentCity?.let { params.put("city.equals", it) }
-        params.put("sort", "id,asc")
+        intentCategory?.let { params.put("category.equals", it) }
+        params["sort"] = "id,asc"
 
         val paramMap: Map<String, String> = HashMap(params)
         paramMap.forEach { p -> Log.d("ncs", "$p") }
 
-        val call = propertyService.findAllProperties(paramMap)
+        val propertyService = PropertyService.create()
+        val call = propertyService.findPropertiesByCriteria(paramMap)
         Log.d("ncs", "Call: " + call.toString())
 
         call.enqueue(object : Callback<Content> {
             override fun onFailure(call: Call<Content>?, t: Throwable?) {
                 Toast.makeText(this@SearchActivity, "Error en Callback", Toast.LENGTH_SHORT).show()
-                Log.d("ncs", "Error en Callback: ${t.toString()}")
                 pg_bar.visibility = ProgressBar.GONE
             }
 
             override fun onResponse(call: Call<Content>?, response: Response<Content>?) {
                 if (response != null) {
                     val content: Content? = response.body()
-                    Log.d("ncs", content.toString())
-
-                    val properties = content?.content!!/*.filter { property -> property.visible }*/
-//                    properties.forEach { p -> Log.d("ncs", p.toString()) }
-
+                    val properties = content?.content!!
                     setupViewPager(properties)
                 } else {
                     Toast.makeText(this@SearchActivity, getString(R.string.no_response), Toast.LENGTH_LONG).show()
