@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        Constants.categories.clear()
         Constants.categories.add("Category")
 
         findCategories()
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isCityValid(text: Editable?): Boolean {
-        return text != null && text.length >= 4
+        return text != null && text.length >= 3
     }
 
     private fun findCategories() {
