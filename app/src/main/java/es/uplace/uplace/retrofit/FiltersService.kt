@@ -1,5 +1,6 @@
 package es.uplace.uplace.retrofit
 
+import es.uplace.uplace.Constants
 import es.uplace.uplace.domain.Filters
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -11,7 +12,7 @@ interface FiltersService {
     companion object Factory {
         fun create(): FiltersService {
             val retrofit = Retrofit.Builder()
-                    .baseUrl(Service.API_URL)
+                    .baseUrl(Constants.API_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
 
