@@ -8,6 +8,6 @@
     <color name="colorSecondaryLight">#ffff77</color>
     <color name="colorTextPrimary">#442c2e</color>
     <color name="colorTextSecondary">#442c2e</color>
-    <color name="divider">#898989</color>
+    <color name="divider">#eee</color>
     <color name="mainPageBackgroundColor">#fff</color>
 </resources>
