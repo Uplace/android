@@ -17,7 +17,7 @@ class PropertyCardRecyclerViewAdapter internal constructor(
         RecyclerView.Adapter<PropertyCardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyCardViewHolder {
-        val layoutView = LayoutInflater.from(parent.context).inflate(R.layout.card_list_property, parent, false)
+        val layoutView = LayoutInflater.from(parent.context).inflate(R.layout.property_card, parent, false)
         return PropertyCardViewHolder(layoutView)
     }
 
@@ -26,22 +26,21 @@ class PropertyCardRecyclerViewAdapter internal constructor(
     override fun onBindViewHolder(holder: PropertyCardViewHolder, position: Int) {
         if (position < propertyList.size) {
             val property = propertyList[position]
-            holder.propertyName.text = property.title
             holder.propertyLocation.text = property.location.fullAddress
-            holder.propertyType.text = property.propertyType
-            holder.propertyYearOfConst.text = "${property.yearConstruction}"
-            holder.propertyTransaction.text = if (property.transaction == "RENT_BUY") "Buy - Rent" else property.transaction.capitalize()
+            holder.propertyCategoryTransaction.text =
+                    "${property.propertyType} for ${if (property.transaction == "RENT_BUY") "Buy or Rent" else property.transaction.toLowerCase().capitalize()}"
             holder.propertyPrice.text = when (property.transaction) {
-                "RENT" -> "${property.priceRent}€"
-                "BUY" -> "${property.priceSell}€"
-                "TRANSFER" -> "${property.priceTransfer}€"
-                "RENT_BUY" -> "${property.priceSell}€ - ${property.priceRent}€"
+                "RENT" -> "${property.priceRent.toInt()}€"
+                "BUY" -> "${property.priceSell.toInt()}€"
+                "TRANSFER" -> "${property.priceTransfer.toInt()}€"
+                "RENT_BUY" -> "${property.priceSell.toInt()}€ - ${property.priceRent.toInt()}€"
                 else -> "undefined"
             }
-            holder.propertySurface.text = "${property.surface}m\u00B2"
             if (property.photos.isNotEmpty())
                 Picasso.with(holder.itemView.context)
                         .load(property.photos[0].photoUrl)
+                        .fit()
+                        .centerCrop()
                         .into(holder.propertyImage)
 
             holder.itemView.setOnClickListener {
