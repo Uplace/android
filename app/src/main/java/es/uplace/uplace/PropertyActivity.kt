@@ -19,6 +19,6 @@ class PropertyActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_property)
+        setContentView(R.layout.activity_property_v2)
     }
 }

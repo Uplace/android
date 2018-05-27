@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/property_activity_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/property_activity_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/property_activity_app_bar"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/property_activity_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/property_activity_txt_category_transaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_below="@id/property_activity_image"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Category for transactionType"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/property_activity_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/property_activity_txt_category_transaction"
+                android:text="Location"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/property_activity_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/property_activity_location"
+                android:layout_marginBottom="14dp"
+                android:layout_marginTop="14dp"
+                android:text="Price"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/property_activity_price"
+                android:text="Description"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/property_activity_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/description"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Slap kitten brother with paw toy mouse squeak roll over. Who's the baby drool yet stare out the window meow all night for loves cheeseburgers fight an alligator and win but cat snacks. Love to play with owner's hair tie plop down in the middle where everybody walks and howl uncontrollably for no reason yet favor packaging over toy" />
+
+            <TextView
+                android:id="@+id/characteristics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/property_activity_description"
+                android:layout_marginTop="20dp"
+                android:text="Characteristics"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="20dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerChars"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/characteristics"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/extras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/recyclerChars"
+                android:layout_marginTop="20dp"
+                android:text="Extras"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="20dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerExtras"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/extras"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/form"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/recyclerExtras"
+                android:layout_marginTop="20dp"
+                android:text="Request information"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="20dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/property_activity_name_text_input"
+                style="@style/Widget.Uplace.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/form"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="Name">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/property_activity_name_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/property_activity_comment_text_input"
+                style="@style/Widget.Uplace.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/property_activity_name_text_input"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="Comments">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/property_activity_comment_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="20" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/property_activity_email_text_input"
+                style="@style/Widget.Uplace.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/property_activity_comment_text_input"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="Email">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/property_activity_email_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/property_activity_phone_text_input"
+                style="@style/Widget.Uplace.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/property_activity_email_text_input"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="Phone number">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/property_activity_phone_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>
