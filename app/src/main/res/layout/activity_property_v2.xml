@@ -12,7 +12,8 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/property_activity_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="?attr/homeAsUpIndicator" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -167,7 +168,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/property_activity_comment_text_input"
+                android:id="@+id/property_activity_email_text_input"
                 style="@style/Widget.Uplace.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -176,34 +177,13 @@
                 android:layout_below="@id/property_activity_name_text_input"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:hint="Comments">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/property_activity_comment_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:maxLines="20" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/property_activity_email_text_input"
-                style="@style/Widget.Uplace.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
-                android:layout_alignStart="@id/property_activity_txt_category_transaction"
-                android:layout_below="@id/property_activity_comment_text_input"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
                 android:hint="Email">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/property_activity_email_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
@@ -228,6 +208,39 @@
                     android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/property_activity_comment_text_input"
+                style="@style/Widget.Uplace.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/property_activity_phone_text_input"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="Comments">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/property_activity_comment_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:maxLines="20" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/property_activity_send_button"
+                style="@style/Widget.Uplace.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/property_activity_comment_text_input"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Send" />
 
         </RelativeLayout>
 
