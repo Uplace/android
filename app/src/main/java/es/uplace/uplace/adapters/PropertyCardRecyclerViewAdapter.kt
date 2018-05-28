@@ -24,30 +24,33 @@ class PropertyCardRecyclerViewAdapter internal constructor(
     override fun getItemCount(): Int = propertyList.size
 
     override fun onBindViewHolder(holder: PropertyCardViewHolder, position: Int) {
-        if (position < propertyList.size) {
-            val property = propertyList[position]
-            holder.propertyLocation.text = property.location.fullAddress
-            holder.propertyCategoryTransaction.text =
-                    "${property.propertyType} for ${if (property.transaction == "RENT_BUY") "Buy or Rent" else property.transaction.toLowerCase().capitalize()}"
-            holder.propertyPrice.text = when (property.transaction) {
-                "RENT" -> "${property.priceRent.toInt()}€"
-                "BUY" -> "${property.priceSell.toInt()}€"
-                "TRANSFER" -> "${property.priceTransfer.toInt()}€"
-                "RENT_BUY" -> "${property.priceSell.toInt()}€ - ${property.priceRent.toInt()}€"
-                else -> "undefined"
-            }
-            if (property.photos.isNotEmpty())
-                Picasso.with(holder.itemView.context)
-                        .load(property.photos[0].photoUrl)
-                        .fit()
-                        .centerCrop()
-                        .into(holder.propertyImage)
-
-            holder.itemView.setOnClickListener {
-                val intent = Intent(holder.itemView.context, PropertyActivity::class.java)
-                intent.putExtra("reference", property.reference)
-                holder.itemView.context.startActivity(intent)
-            }
+        val property = propertyList[position]
+        Log.d("ncs", property.toString())
+        holder.propertyLocation.text = property.location.fullAddress
+        holder.propertyCategoryTransaction.text =
+                "${property.propertyType} for ${if (property.transaction == "RENT_BUY") "Buy or Rent" else property.transaction.toLowerCase().capitalize()}"
+        holder.propertyPrice.text = when (property.transaction) {
+            "RENT" -> "${property.priceRent.toInt()}€"
+            "BUY" -> "${property.priceSell.toInt()}€"
+            "TRANSFER" -> "${property.priceTransfer.toInt()}€"
+            "RENT_BUY" -> "${property.priceSell.toInt()}€ - ${property.priceRent.toInt()}€"
+            else -> "undefined"
         }
+        if (property.photos.isNotEmpty()) {
+            Picasso.with(holder.itemView.context)
+                    .load(property.photos[0].photoUrl)
+                    .fit()
+                    .centerCrop()
+                    .into(holder.propertyImage)
+        } else {
+            holder.propertyImage.setImageBitmap(null)
+        }
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, PropertyActivity::class.java)
+            intent.putExtra("reference", property.reference)
+            holder.itemView.context.startActivity(intent)
+        }
+
     }
 }
