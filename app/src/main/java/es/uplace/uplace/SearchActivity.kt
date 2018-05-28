@@ -5,6 +5,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -45,6 +46,8 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+
+        Log.d("ncs", "onCreate")
 
         setSupportActionBar(toolbar_top)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)

@@ -26,6 +26,9 @@ class PropertyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_property_v2)
 
+        setSupportActionBar(property_activity_toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
         findProperty()
     }
 
@@ -55,6 +58,7 @@ class PropertyActivity : AppCompatActivity() {
 
     private fun setViews(property: Property?) {
         if (property != null) {
+            supportActionBar?.title = property.title
             Picasso.with(this).load(property.photos[0].photoUrl).fit().centerCrop().into(property_activity_image)
             property_activity_location.text = property.location.fullAddress
             when (property.transaction) {
