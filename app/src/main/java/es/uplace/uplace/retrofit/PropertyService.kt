@@ -2,7 +2,7 @@ package es.uplace.uplace.retrofit
 
 import es.uplace.uplace.Constants
 import es.uplace.uplace.domain.Content
-import es.uplace.uplace.domain.Filters
+import es.uplace.uplace.domain.Property
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,4 +23,7 @@ interface PropertyService {
 
     @GET("properties")
     fun findPropertiesByCriteria(@QueryMap params: Map<String, String>): Call<Content>
+
+    @GET("properties/{reference}")
+    fun findPropertyByReference(@Path("reference") reference: String): Call<Property>
 }
