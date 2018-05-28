@@ -95,8 +95,8 @@ class SearchActivity : AppCompatActivity() {
                 params["city.equals"] = filter_city_edit_text.text.toString()
                 if (filter_category_spinner.selectedItemPosition != 0)
                     params["category.equals"] = filter_category_spinner.selectedItem.toString()
-                if (priceFrom != null) params["price.greaterOrEqualThan"] = priceFrom.toString()
-                if (priceTo != null) params["price.lessOrEqualThan"] = priceTo.toString()
+                params["price.greaterOrEqualThan"] = priceFrom.toString()
+                params["price.lessOrEqualThan"] = priceTo.toString()
 
                 findProperties()
             }
@@ -144,13 +144,13 @@ class SearchActivity : AppCompatActivity() {
     private fun makeCriteriaFromMain() {
         params.clear()
 
-        intentCity?.let { params.put("city.equals", it) }
-        intentCategory?.let { params.put("category.equals", it) }
+        intentCity?.let { params["city.equals"] = it }
+        intentCategory?.let { params["category.equals"] = it }
         params["sort"] = "id,asc"
     }
 
     private fun findProperties() {
-        val paramMap: Map<String, String> = HashMap(params)
+        val paramMap: HashMap<String, String> = HashMap(params)
         val propertyService = PropertyService.create()
         val call = propertyService.findPropertiesByCriteria(paramMap)
 

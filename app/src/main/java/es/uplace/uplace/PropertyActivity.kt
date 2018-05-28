@@ -64,19 +64,19 @@ class PropertyActivity : AppCompatActivity() {
             when (property.transaction) {
                 "RENT" -> {
                     property_activity_txt_category_transaction.text = "${property.propertyType.toLowerCase().capitalize()} for Rent"
-                    property_activity_price.text = property.priceRent.toString()
+                    property_activity_price.text = "${property.priceRent}€"
                 }
                 "BUY" -> {
                     property_activity_txt_category_transaction.text = "${property.propertyType.toLowerCase().capitalize()} for Buy"
-                    property_activity_price.text = property.priceSell.toString()
+                    property_activity_price.text = "${property.priceSell}€"
                 }
                 "TRANSFER" -> {
                     property_activity_txt_category_transaction.text = "${property.propertyType.toLowerCase().capitalize()} for Transfer"
-                    property_activity_price.text = property.priceTransfer.toString()
+                    property_activity_price.text = "${property.priceTransfer}€"
                 }
                 "BUY_RENT" -> {
                     property_activity_txt_category_transaction.text = "${property.propertyType.toLowerCase().capitalize()} for Buy or Rent"
-                    property_activity_price.text = "${property.priceSell} - ${property.priceRent}"
+                    property_activity_price.text = "${property.priceSell}€ - ${property.priceRent}€"
                 }
             }
             property_activity_description.text = property.description

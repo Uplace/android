@@ -22,7 +22,7 @@ interface PropertyService {
     }
 
     @GET("properties")
-    fun findPropertiesByCriteria(@QueryMap params: Map<String, String>): Call<Content>
+    fun findPropertiesByCriteria(@QueryMap params: HashMap<String, String>): Call<Content>
 
     @GET("properties/{reference}")
     fun findPropertyByReference(@Path("reference") reference: String): Call<Property>
