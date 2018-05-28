@@ -25,7 +25,6 @@ class PropertyCardRecyclerViewAdapter internal constructor(
 
     override fun onBindViewHolder(holder: PropertyCardViewHolder, position: Int) {
         val property = propertyList[position]
-        Log.d("ncs", property.toString())
         holder.propertyLocation.text = property.location.fullAddress
         holder.propertyCategoryTransaction.text =
                 "${property.propertyType} for ${if (property.transaction == "RENT_BUY") "Buy or Rent" else property.transaction.toLowerCase().capitalize()}"
