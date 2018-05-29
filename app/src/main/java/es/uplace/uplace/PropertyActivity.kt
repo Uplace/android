@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.squareup.picasso.Picasso
 
@@ -61,6 +62,7 @@ class PropertyActivity : AppCompatActivity() {
             supportActionBar?.title = property.title
             Picasso.with(this).load(property.photos[0].photoUrl).fit().centerCrop().into(property_activity_image)
             property_activity_location.text = property.location.fullAddress
+            Log.d("ncs", property.transaction)
             when (property.transaction) {
                 "RENT" -> {
                     property_activity_txt_category_transaction.text = "${property.propertyType.toLowerCase().capitalize()} for Rent"
@@ -74,7 +76,7 @@ class PropertyActivity : AppCompatActivity() {
                     property_activity_txt_category_transaction.text = "${property.propertyType.toLowerCase().capitalize()} for Transfer"
                     property_activity_price.text = "${property.priceTransfer}€"
                 }
-                "BUY_RENT" -> {
+                "RENT_BUY" -> {
                     property_activity_txt_category_transaction.text = "${property.propertyType.toLowerCase().capitalize()} for Buy or Rent"
                     property_activity_price.text = "${property.priceSell}€ - ${property.priceRent}€"
                 }
