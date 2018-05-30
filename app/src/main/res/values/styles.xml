@@ -39,7 +39,7 @@
     </style>
 
     <style name="Widget.Uplace.Button" parent="Widget.MaterialComponents.Button">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textColor">@color/white</item>
         <item name="backgroundTint">?attr/colorControlActivated</item>
         <!--<item name="android:stateListAnimator" tool:ignore="NewApi"></item>-->
     </style>
