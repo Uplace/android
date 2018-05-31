@@ -60,7 +60,11 @@ class PropertyActivity : AppCompatActivity() {
     private fun setViews(property: Property?) {
         if (property != null) {
             supportActionBar?.title = property.title
-            Picasso.with(this).load(property.photos[0].photoUrl).fit().centerCrop().into(property_activity_image)
+            if (property.photos.isNotEmpty()) {
+                Picasso.with(this).load(property.photos[0].photoUrl).fit().centerCrop().into(property_activity_image)
+            } else {
+                property_activity_image.setImageBitmap(null)
+            }
             property_activity_location.text = property.location.fullAddress
             Log.d("ncs", property.transaction)
             when (property.transaction) {
