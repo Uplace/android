@@ -2,6 +2,7 @@ package es.uplace.uplace.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,7 @@ import es.uplace.uplace.domain.Property
 
 class MapSearchFragment : Fragment(), OnMapReadyCallback {
 
-    private var properties: ArrayList<Property> = arrayListOf()
+    var properties: ArrayList<Property> = arrayListOf()
 
     private lateinit var mapView: MapView
     private lateinit var map: GoogleMap
@@ -40,6 +41,9 @@ class MapSearchFragment : Fragment(), OnMapReadyCallback {
         mapView = v.findViewById(R.id.map)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+
+        properties = arguments!!.getParcelableArrayList("properties")
+        updateProperties(properties)
 
         return v
     }
@@ -78,7 +82,9 @@ class MapSearchFragment : Fragment(), OnMapReadyCallback {
 
     fun updateProperties(properties: ArrayList<Property>) {
         if (!::map.isInitialized) return
-        for (p in properties) {
+        Log.d("ncs", "${properties.isEmpty()}")
+        this.properties = arguments!!.getParcelableArrayList("properties")
+        for (p in this.properties) {
             val location = p.location
             val position = LatLng(location.latitude, location.longitude)
             map.addMarker(MarkerOptions().position(position).title(p.title))
