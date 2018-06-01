@@ -14,12 +14,26 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
 import es.uplace.uplace.R
+import es.uplace.uplace.domain.Property
 
 class MapSearchFragment : Fragment(), OnMapReadyCallback {
 
-    internal lateinit var mapView: MapView
+    private var properties: ArrayList<Property> = arrayListOf()
+
+    companion object {
+        fun instance(properties: ArrayList<Property>): MapSearchFragment {
+            val fragment = MapSearchFragment()
+            val args = Bundle()
+            args.putParcelableArrayList("properties", properties)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    private lateinit var mapView: MapView
     internal lateinit var map: GoogleMap
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -57,6 +71,7 @@ class MapSearchFragment : Fragment(), OnMapReadyCallback {
         //        map.animateCamera(cameraUpdate);
         val location = LatLng(40.416775, -3.0)
         map.moveCamera(CameraUpdateFactory.newLatLng(location))
+        updateProperties(properties)
     }
 
     override fun onResume() {
@@ -72,5 +87,13 @@ class MapSearchFragment : Fragment(), OnMapReadyCallback {
     override fun onLowMemory() {
         super.onLowMemory()
         mapView.onLowMemory()
+    }
+
+    fun updateProperties(properties: ArrayList<Property>) {
+        for (p in properties) {
+            val location = p.location
+            val position = LatLng(location.latitude, location.longitude)
+            map.addMarker(MarkerOptions().position(position).title(p.title))
+        }
     }
 }

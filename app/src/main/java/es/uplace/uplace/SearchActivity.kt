@@ -34,7 +34,7 @@ class SearchActivity : AppCompatActivity() {
     var properties: ArrayList<Property> = arrayListOf()
 
     var listSearchFragment = ListSearchFragment.instance(properties)
-    var mapFragment = MapSearchFragment()
+    var mapFragment = MapSearchFragment.instance(properties)
 
     private val params: MutableMap<String, String> = HashMap()
     private var priceFrom: Int = 0
@@ -168,6 +168,7 @@ class SearchActivity : AppCompatActivity() {
                         properties = content.content as ArrayList<Property>
                     }
                     listSearchFragment.updatePropertyList(properties)
+                    mapFragment.updateProperties(properties)
                 } else {
                     Toast.makeText(this@SearchActivity, getString(R.string.no_response), Toast.LENGTH_LONG).show()
                 }
