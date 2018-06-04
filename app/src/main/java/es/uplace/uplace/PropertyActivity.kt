@@ -15,6 +15,8 @@ import es.uplace.uplace.domain.Property
 import es.uplace.uplace.domain.Request
 import es.uplace.uplace.retrofit.PropertyService
 import kotlinx.android.synthetic.main.activity_property_v2.*
+import okhttp3.MediaType
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,7 +26,7 @@ class PropertyActivity : AppCompatActivity() {
     lateinit var property: Property
     lateinit var propertyJson: String
 
-    val propertyService = PropertyService.create()
+    private val propertyService = PropertyService.create()
 
     var propertyCharAdapter = PropertyCharAdapter(this)
     var propertyExtraAdapter = PropertyExtraAdapter(this)
@@ -104,16 +106,12 @@ class PropertyActivity : AppCompatActivity() {
                 lastName = lastname,
                 email = email,
                 message = message,
-                phone = phone,
-                property = this.property
+                phone = phone
         )
 
-        val gson = Gson()
-        val requestJson: String = gson.toJson(request)
+        val requestBody: RequestBody = RequestBody.create(MediaType.parse("application/json"), request.toString())
 
-        Log.d("ncs", requestJson)
-
-        val call = propertyService.sendRequestInformation(property.reference, requestJson)
+        val call = propertyService.sendRequestInformation(property.reference, requestBody)
 
         call.enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>?, t: Throwable?) {
@@ -122,7 +120,7 @@ class PropertyActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
                 val responseCode = response?.code()
-                Toast.makeText(this@PropertyActivity, "Response code: ${responseCode}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@PropertyActivity, "Response code: $responseCode", Toast.LENGTH_SHORT).show()
             }
 
         })
