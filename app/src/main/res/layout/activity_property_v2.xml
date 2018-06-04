@@ -146,7 +146,7 @@
                 android:textSize="20dp" />
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/property_activity_name_text_input"
+                android:id="@+id/property_activity_firstname_text_input"
                 style="@style/Widget.Uplace.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,10 +155,31 @@
                 android:layout_below="@id/form"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:hint="Name">
+                android:hint="Firstname">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/property_activity_name_edit_text"
+                    android:id="@+id/property_activity_firstname_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/property_activity_lastname_text_input"
+                style="@style/Widget.Uplace.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/property_activity_txt_category_transaction"
+                android:layout_alignStart="@id/property_activity_txt_category_transaction"
+                android:layout_below="@id/property_activity_firstname_text_input"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="Lastname">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/property_activity_lastname_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -173,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/property_activity_txt_category_transaction"
                 android:layout_alignStart="@id/property_activity_txt_category_transaction"
-                android:layout_below="@id/property_activity_name_text_input"
+                android:layout_below="@id/property_activity_lastname_text_input"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:hint="Email">
