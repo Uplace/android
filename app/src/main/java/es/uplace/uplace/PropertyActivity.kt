@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
+import android.text.Editable
 import android.util.Log
+import android.util.Patterns
 import android.widget.Toast
-import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 
 import es.uplace.uplace.adapters.PropertyCharAdapter
@@ -42,9 +44,32 @@ class PropertyActivity : AppCompatActivity() {
         findProperty()
 
         property_activity_send_button.setOnClickListener {
-            sendRequest()
+
+            if (!isNotEmpty(property_activity_firstname_edit_text.text)) {
+                property_activity_firstname_text_input.error = getString(R.string.error_empty)
+            } else if (!isNotEmpty(property_activity_lastname_edit_text.text)) {
+                property_activity_lastname_text_input.error = getString(R.string.error_empty)
+            } else if (!isValidEmail(property_activity_email_edit_text.text)) {
+                property_activity_email_text_input.error = getString(R.string.error_email)
+            } else if (!isValidPhone(property_activity_phone_edit_text.text)) {
+                property_activity_phone_text_input.error = getString(R.string.error_phone)
+            } else {
+                property_activity_firstname_text_input.error = null
+                property_activity_lastname_text_input.error = null
+                property_activity_email_text_input.error = null
+                property_activity_phone_text_input.error = null
+
+                sendRequest()
+            }
         }
     }
+
+    private fun isNotEmpty(text: Editable?): Boolean = text != null && text.isNotEmpty()
+
+    private fun isValidEmail(text: Editable?): Boolean =
+            text != null && Patterns.EMAIL_ADDRESS.matcher(text.toString()).matches()
+
+    private fun isValidPhone(text: Editable?): Boolean = text != null && text.length == 9
 
     private fun findProperty() {
 
@@ -120,7 +145,33 @@ class PropertyActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
                 val responseCode = response?.code()
-                Toast.makeText(this@PropertyActivity, "Response code: $responseCode", Toast.LENGTH_SHORT).show()
+
+                val builder = AlertDialog.Builder(this@PropertyActivity)
+
+                if (responseCode == 200) {
+                    builder.setTitle("Message sent")
+                    builder.setMessage("Wait until the agent sends you an email.")
+                    builder.setPositiveButton("OK"){ _, _ ->
+                        property_activity_firstname_edit_text.text = null
+                        property_activity_lastname_edit_text.text = null
+                        property_activity_email_edit_text.text = null
+                        property_activity_phone_edit_text.text = null
+                        property_activity_comment_edit_text.text = null
+
+                        property_activity_firstname_edit_text.clearFocus()
+                        property_activity_lastname_edit_text.clearFocus()
+                        property_activity_email_edit_text.clearFocus()
+                        property_activity_phone_edit_text.clearFocus()
+                        property_activity_comment_edit_text.clearFocus()
+                    }
+                } else {
+                    builder.setTitle("It looks like an error occurred")
+                    builder.setMessage("Try again")
+                    builder.setPositiveButton("OK"){ _, _ ->}
+                }
+
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
             }
 
         })

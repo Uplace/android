@@ -155,7 +155,7 @@
                 android:layout_below="@id/form"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:hint="Firstname">
+                android:hint="First name">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/property_activity_firstname_edit_text"
@@ -176,7 +176,7 @@
                 android:layout_below="@id/property_activity_firstname_text_input"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:hint="Lastname">
+                android:hint="Last name">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/property_activity_lastname_edit_text"
