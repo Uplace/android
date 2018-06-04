@@ -78,17 +78,6 @@
             android:layout_alignParentRight="true"
             android:text="@string/done" />
 
-        <android.support.design.button.MaterialButton
-            android:id="@+id/filter_clear_button"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_toLeftOf="@id/filter_done_button"
-            android:layout_toStartOf="@id/filter_done_button"
-            android:text="@string/clear" />
-
     </RelativeLayout>
 
 </merge>
