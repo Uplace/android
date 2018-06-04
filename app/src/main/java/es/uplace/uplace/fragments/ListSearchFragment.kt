@@ -34,7 +34,7 @@ class ListSearchFragment : Fragment() {
         recyclerProperty = v.recycler_property
 
         properties = arguments!!.getParcelableArrayList("properties")
-        updatePropertyList(properties)
+//        updatePropertyList(properties)
 
         return v
     }
