@@ -166,10 +166,10 @@ class SearchActivity : AppCompatActivity() {
                     if (content?.content != null) {
                         properties.clear()
                         properties = content.content as ArrayList<Property>
+
+                        listSearchFragment.updatePropertyList(properties)
+                        mapFragment.updateProperties(properties)
                     }
-                    listSearchFragment.updatePropertyList(properties)
-                    mapFragment.properties = properties
-                    mapFragment.updateProperties(properties)
                 } else {
                     Toast.makeText(this@SearchActivity, getString(R.string.no_response), Toast.LENGTH_LONG).show()
                 }

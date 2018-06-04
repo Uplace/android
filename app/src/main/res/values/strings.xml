@@ -17,7 +17,7 @@
     <string name="internet">Internet</string>
     <string name="property_image">Property Image</string>
     <string name="property_name">Property Name</string>
-    <string name="location">Location</string>
+    <string name="pLocation">Location</string>
     <string name="favourites_image">Favourites Image</string>
     <string name="property_price">Price</string>
     <string name="property_type">Type</string>

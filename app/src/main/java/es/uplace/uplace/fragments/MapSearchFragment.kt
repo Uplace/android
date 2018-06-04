@@ -6,24 +6,27 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.MapsInitializer
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 import es.uplace.uplace.R
 import es.uplace.uplace.domain.Property
+import kotlinx.android.synthetic.main.fragment_map.view.*
 
-class MapSearchFragment : Fragment(), OnMapReadyCallback {
+class MapSearchFragment : Fragment()/*, OnMapReadyCallback*/ {
 
-    var properties: ArrayList<Property> = arrayListOf()
+    private var properties: ArrayList<Property> = arrayListOf()
 
     private lateinit var mapView: MapView
-    private lateinit var map: GoogleMap
+    lateinit var map: GoogleMap
+    var initialized: Boolean = false
 
     companion object {
         fun instance(properties: ArrayList<Property>): MapSearchFragment {
@@ -38,31 +41,35 @@ class MapSearchFragment : Fragment(), OnMapReadyCallback {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_map, container, false)
 
-        mapView = v.findViewById(R.id.map)
-        mapView.onCreate(savedInstanceState)
-        mapView.getMapAsync(this)
+        mapView = v.map
 
-        properties = arguments!!.getParcelableArrayList("properties")
-        updateProperties(properties)
+        mapView.onCreate(savedInstanceState)
+        mapView.getMapAsync {
+            this.map = it
+
+            this.map.uiSettings.isMyLocationButtonEnabled = false
+            MapsInitializer.initialize(activity?.applicationContext)
+
+            val location = LatLng(40.416775, -3.0)
+            map.moveCamera(CameraUpdateFactory.newLatLng(location))
+            initialized = true
+            Log.d("ncs", "OnMapReady end")
+            Toast.makeText(activity?.applicationContext, "OnMapReady end", Toast.LENGTH_SHORT).show()
+
+            if (!::map.isInitialized) Log.d("ncs", "Not initialized")
+            else Log.d("ncs", "initialized")
+
+//            updateProperties(this.properties)
+            this.properties.forEach {
+                Log.d("ncs", it.toString())
+                val pLocation = it.location
+                val position = LatLng(pLocation.latitude, pLocation.longitude)
+                this.map.addMarker(MarkerOptions().position(position).title(it.title))
+            }
+        }
+        Log.d("ncs", "Map is not initialized and properties is ${ if (this.properties.isEmpty()) "empty" else "not empty"}")
 
         return v
-    }
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        map = googleMap
-
-//        Gets to GoogleMap from the MapView and does initialization stuff
-        map.uiSettings.isMyLocationButtonEnabled = false
-
-//        Needs to call MapsInitializer before doing any CameraUpdateFactory calls
-        MapsInitializer.initialize(this.activity)
-
-//        Updates the location and zoom of the MapView
-//            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(42.0, 2.0), 10);
-//            map.animateCamera(cameraUpdate);
-        val location = LatLng(40.416775, -3.0)
-        map.moveCamera(CameraUpdateFactory.newLatLng(location))
-        updateProperties(this.properties)
     }
 
     override fun onResume() {
@@ -81,13 +88,22 @@ class MapSearchFragment : Fragment(), OnMapReadyCallback {
     }
 
     fun updateProperties(properties: ArrayList<Property>) {
-        if (!::map.isInitialized) return
-        Log.d("ncs", "${properties.isEmpty()}")
-        this.properties = arguments!!.getParcelableArrayList("properties")
-        for (p in this.properties) {
-            val location = p.location
-            val position = LatLng(location.latitude, location.longitude)
-            map.addMarker(MarkerOptions().position(position).title(p.title))
-        }
+        this.properties = properties
+            Log.d("ncs", "Properties is ${ if (this.properties.isEmpty()) "empty" else "not empty"}")
+//        if (!::map.isInitialized) {
+//            Log.d("ncs", "Map is not initialized and properties is ${ if (properties.isEmpty()) "empty" else "not empty"}")
+//            return
+//        } else {
+//            val location = LatLng(40.416775, -3.0)
+//            this.map.addMarker(MarkerOptions().position(location).title("Initial location"))
+
+//            Log.d("ncs", "Map is initialized and properties is ${ if (this.properties.isEmpty()) "empty" else "not empty"}")
+//            this.properties.forEach {
+//                Log.d("ncs", it.toString())
+//                val pLocation = it.location
+//                val position = LatLng(pLocation.latitude, pLocation.longitude)
+//                this.map.addMarker(MarkerOptions().position(position).title(it.title))
+//            }
+//        }
     }
 }
