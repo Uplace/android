@@ -54,7 +54,7 @@ class MapSearchFragment : Fragment()/*, OnMapReadyCallback*/ {
             map.moveCamera(CameraUpdateFactory.newLatLng(location))
             initialized = true
             Log.d("ncs", "OnMapReady end")
-            Toast.makeText(activity?.applicationContext, "OnMapReady end", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(activity?.applicationContext, "OnMapReady end", Toast.LENGTH_SHORT).show()
 
             if (!::map.isInitialized) Log.d("ncs", "Not initialized")
             else Log.d("ncs", "initialized")
@@ -67,7 +67,7 @@ class MapSearchFragment : Fragment()/*, OnMapReadyCallback*/ {
                 this.map.addMarker(MarkerOptions().position(position).title(it.title))
             }
         }
-        Log.d("ncs", "Map is not initialized and properties is ${ if (this.properties.isEmpty()) "empty" else "not empty"}")
+        Log.d("ncs", "Map is not initialized and properties is ${if (this.properties.isEmpty()) "empty" else "not empty"}")
 
         return v
     }
@@ -87,23 +87,20 @@ class MapSearchFragment : Fragment()/*, OnMapReadyCallback*/ {
         mapView.onLowMemory()
     }
 
-    fun updateProperties(properties: ArrayList<Property>) {
+    fun updateProperties(properties: ArrayList<Property>, newSearch : Boolean = false) {
         this.properties = properties
-            Log.d("ncs", "Properties is ${ if (this.properties.isEmpty()) "empty" else "not empty"}")
-//        if (!::map.isInitialized) {
-//            Log.d("ncs", "Map is not initialized and properties is ${ if (properties.isEmpty()) "empty" else "not empty"}")
-//            return
-//        } else {
-//            val location = LatLng(40.416775, -3.0)
-//            this.map.addMarker(MarkerOptions().position(location).title("Initial location"))
+        Log.d("ncs", "Properties is ${if (this.properties.isEmpty()) "empty" else "not empty"}")
 
-//            Log.d("ncs", "Map is initialized and properties is ${ if (this.properties.isEmpty()) "empty" else "not empty"}")
-//            this.properties.forEach {
-//                Log.d("ncs", it.toString())
-//                val pLocation = it.location
-//                val position = LatLng(pLocation.latitude, pLocation.longitude)
-//                this.map.addMarker(MarkerOptions().position(position).title(it.title))
-//            }
-//        }
+        if (newSearch) {
+            this.map.clear()
+            this.properties.forEach {
+                Log.d("ncs", it.toString())
+                val pLocation = it.location
+                val position = LatLng(pLocation.latitude, pLocation.longitude)
+                this.map.addMarker(MarkerOptions().position(position).title(it.title))
+            }
+        }
     }
+
+
 }

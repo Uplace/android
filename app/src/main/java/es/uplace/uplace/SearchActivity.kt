@@ -43,6 +43,8 @@ class SearchActivity : AppCompatActivity() {
     private var intentCity: String? = null
     private var intentCategory: String? = null
 
+    var newSearch = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -98,6 +100,7 @@ class SearchActivity : AppCompatActivity() {
                 params["price.greaterOrEqualThan"] = priceFrom.toString()
                 params["price.lessOrEqualThan"] = priceTo.toString()
 
+                newSearch = true
                 findProperties()
             }
 
@@ -168,7 +171,7 @@ class SearchActivity : AppCompatActivity() {
                         properties = content.content as ArrayList<Property>
 
                         listSearchFragment.updatePropertyList(properties)
-                        mapFragment.updateProperties(properties)
+                        mapFragment.updateProperties(properties, newSearch)
                     }
                 } else {
                     Toast.makeText(this@SearchActivity, getString(R.string.no_response), Toast.LENGTH_LONG).show()
