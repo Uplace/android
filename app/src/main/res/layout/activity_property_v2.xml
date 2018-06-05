@@ -250,7 +250,7 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.v7.widget.AppCompatButton
+            <android.support.design.button.MaterialButton
                 android:id="@+id/property_activity_send_button"
                 style="@style/Widget.Uplace.Button"
                 android:layout_width="wrap_content"

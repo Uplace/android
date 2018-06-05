@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 'android-P'
     defaultConfig {
         applicationId "es.uplace.uplace"
         minSdkVersion 16
@@ -26,15 +26,15 @@ androidExtensions {
 }
 
 dependencies {
-//    api 'com.android.support:design:28.0.0-alpha1'
-//    implementation 'com.android.support:support-v4:28.0.0-alpha1'
-    api 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
+    api 'com.android.support:design:28.0.0-alpha1'
+    implementation 'com.android.support:support-v4:28.0.0-alpha1'
+//    api 'com.android.support:design:27.1.1'
+//    implementation 'com.android.support:appcompat-v7:27.1.1'
+//    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+//    implementation 'com.android.support:support-v4:27.1.1'
+//    implementation 'com.android.support:recyclerview-v7:27.1.1'
+//    implementation 'com.android.support:design:27.1.1'
+//    implementation 'com.android.support:cardview-v7:27.1.1'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
