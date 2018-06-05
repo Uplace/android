@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.design.button.MaterialButton
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/main_search_button"
                 style="@style/Widget.Uplace.Button"
                 android:layout_width="wrap_content"
